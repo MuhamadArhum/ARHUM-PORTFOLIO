@@ -45,17 +45,17 @@ export default function ProfileImage() {
     <div className="relative group flex flex-col items-center justify-center">
       <div 
         onClick={triggerUpload}
-        className="cursor-pointer relative w-64 h-64 md:w-76 md:h-76 rounded-2xl overflow-hidden border border-zinc-200 bg-zinc-50 shadow-xs flex items-center justify-center group-hover:border-teal-500 hover:shadow-md transition-all duration-300 transform group-hover:scale-[1.005]"
+        className="cursor-pointer relative w-64 h-64 md:w-76 md:h-76 rounded-2xl overflow-hidden border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-850/60 shadow-xs flex items-center justify-center group-hover:border-teal-500 hover:shadow-md transition-all duration-300 transform group-hover:scale-[1.005]"
         id="profile-picture-container"
       >
         {/* Soft high-end visual gradient overlays */}
-        <div className="absolute inset-0 bg-gradient-to-t from-zinc-100/50 via-transparent to-transparent opacity-80 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-zinc-100/50 dark:from-zinc-900/50 via-transparent to-transparent opacity-80 pointer-events-none" />
         
         {/* Crisp design corners */}
-        <div className="absolute top-3.5 left-3.5 w-2 h-2 border-t border-l border-zinc-300 pointer-events-none" />
-        <div className="absolute top-3.5 right-3.5 w-2 h-2 border-t border-r border-zinc-300 pointer-events-none" />
-        <div className="absolute bottom-3.5 left-3.5 w-2 h-2 border-b border-l border-zinc-300 pointer-events-none" />
-        <div className="absolute bottom-3.5 right-3.5 w-2 h-2 border-b border-r border-zinc-300 pointer-events-none" />
+        <div className="absolute top-3.5 left-3.5 w-2 h-2 border-t border-l border-zinc-300 dark:border-zinc-700 pointer-events-none" />
+        <div className="absolute top-3.5 right-3.5 w-2 h-2 border-t border-r border-zinc-300 dark:border-zinc-700 pointer-events-none" />
+        <div className="absolute bottom-3.5 left-3.5 w-2 h-2 border-b border-l border-zinc-300 dark:border-zinc-700 pointer-events-none" />
+        <div className="absolute bottom-3.5 right-3.5 w-2 h-2 border-b border-r border-zinc-300 dark:border-zinc-700 pointer-events-none" />
 
         {imageSrc ? (
           <img 
@@ -66,7 +66,7 @@ export default function ProfileImage() {
           />
         ) : (
           /* High-end modern SVGs representation aligned securely to professional specifications */
-          <div className="w-full h-full flex flex-col items-center justify-center p-6 bg-zinc-50 relative">
+          <div className="w-full h-full flex flex-col items-center justify-center p-6 bg-zinc-50 dark:bg-zinc-850/20 relative">
             <svg 
               viewBox="0 0 200 200" 
               className="w-44 h-44 drop-shadow-[0_4px_10px_rgba(13,148,136,0.08)]"
@@ -133,8 +133,8 @@ export default function ProfileImage() {
               />
             </svg>
             <div className="mt-3.5 flex flex-col items-center">
-              <span className="text-sm font-bold text-zinc-950">Muhammad Arhum</span>
-              <span className="text-[10px] text-zinc-400 font-mono mt-1 font-semibold uppercase tracking-wider">
+              <span className="text-sm font-bold text-zinc-950 dark:text-zinc-50">Muhammad Arhum</span>
+              <span className="text-[10px] text-zinc-400 dark:text-zinc-500 font-mono mt-1 font-semibold uppercase tracking-wider animate-pulse">
                 Click to Set Photo
               </span>
             </div>
@@ -161,7 +161,7 @@ export default function ProfileImage() {
       {imageSrc && (
         <button 
           onClick={clearImage}
-          className="mt-3 flex items-center gap-1 px-2.5 py-1 text-xs text-zinc-500 hover:text-teal-600 bg-zinc-50 border border-zinc-200 rounded-lg hover:border-zinc-300 transition-all duration-200 cursor-pointer font-semibold"
+          className="mt-3 flex items-center gap-1 px-2.5 py-1 text-xs text-zinc-500 dark:text-zinc-400 hover:text-teal-600 dark:hover:text-teal-400 bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700/80 rounded-lg hover:border-zinc-300 dark:hover:border-zinc-600 transition-all duration-200 cursor-pointer font-semibold shadow-xs"
           id="clear-avatar-btn"
         >
           <RefreshCw size={11} /> Reset Avatar

@@ -26,33 +26,33 @@ export default function Projects() {
   };
 
   return (
-    <section className="py-24 px-6 md:px-12 bg-white border-b border-zinc-100" id="projects-section">
+    <section className="py-24 px-6 md:px-12 bg-white dark:bg-zinc-900 border-b border-zinc-100 dark:border-zinc-800 transition-colors duration-300" id="projects-section">
       <div className="w-full max-w-7xl mx-auto">
         
         {/* Header Block Description */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
           <div className="max-w-2xl text-left space-y-3">
-            <span className="font-mono text-xs tracking-widest uppercase text-teal-600 font-bold inline-flex items-center gap-1">
-              <Sparkles size={11} className="text-teal-600 animate-pulse" /> Engineering Ledger
+            <span className="font-mono text-xs tracking-widest uppercase text-teal-600 dark:text-teal-400 font-bold inline-flex items-center gap-1">
+              <Sparkles size={11} className="text-teal-600 dark:text-teal-400 animate-pulse" /> Engineering Ledger
             </span>
-            <h2 className="text-3xl md:text-4xl font-sans font-extrabold text-zinc-900 tracking-tight">
+            <h2 className="text-3xl md:text-4xl font-sans font-extrabold text-zinc-900 dark:text-zinc-50 tracking-tight">
               Featured Systems & Artifacts
             </h2>
-            <p className="text-zinc-500 text-sm leading-relaxed font-semibold">
+            <p className="text-zinc-500 dark:text-zinc-400 text-sm leading-relaxed font-semibold">
               High-throughput gateways, real-time sync systems, and cognitive semantic indices built around structural efficiency.
             </p>
           </div>
 
           {/* Filtering Category Horizontal Strips */}
-          <div className="flex flex-wrap items-center gap-1.5 bg-zinc-50 border border-zinc-200 p-1.5 rounded-xl select-none w-fit">
+          <div className="flex flex-wrap items-center gap-1.5 bg-zinc-50 dark:bg-zinc-950/40 border border-zinc-200 dark:border-zinc-805 p-1.5 rounded-xl select-none w-fit">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
                 className={`px-3.5 py-1.5 rounded-lg text-xs font-bold tracking-wide transition-all duration-200 cursor-pointer ${
                   activeCategory === cat
-                    ? 'bg-zinc-950 text-white shadow-xs'
-                    : 'text-zinc-500 hover:text-zinc-950 hover:bg-zinc-200/50'
+                    ? 'bg-zinc-950 dark:bg-zinc-50 text-white dark:text-zinc-950 shadow-xs'
+                    : 'text-zinc-500 dark:text-zinc-405 hover:text-zinc-950 dark:hover:text-zinc-100 hover:bg-zinc-200/50 dark:hover:bg-zinc-805/50'
                 }`}
                 id={`proj-filter-${cat.toLowerCase()}`}
               >
@@ -73,30 +73,30 @@ export default function Projects() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.35 }}
-                className="group flex flex-col bg-white border border-zinc-200 rounded-2xl overflow-hidden hover:border-teal-500/20 hover:shadow-md transition-all duration-300 text-left"
+                className="group flex flex-col bg-white dark:bg-zinc-900/60 border border-zinc-200 dark:border-zinc-800 rounded-2xl overflow-hidden hover:border-teal-500/20 dark:hover:border-teal-500/30 hover:shadow-md transition-all duration-300 text-left"
                 id={`project-card-${project.id}`}
               >
                 {/* Visual Header */}
-                <div className="relative aspect-video overflow-hidden bg-zinc-50 border-b border-zinc-150">
+                <div className="relative aspect-video overflow-hidden bg-zinc-50 dark:bg-zinc-955 border-b border-zinc-150 dark:border-zinc-800">
                   <img 
                     src={project.image} 
                     alt={project.title} 
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.005]"
                     referrerPolicy="no-referrer"
                   />
-                  <div className="absolute top-3 left-3 flex items-center gap-1.5 bg-white/95 px-3 py-1 rounded-lg border border-zinc-200 text-xs font-extrabold shadow-sm">
+                  <div className="absolute top-3 left-3 flex items-center gap-1.5 bg-white/95 dark:bg-zinc-900/95 px-3 py-1 rounded-lg border border-zinc-200 dark:border-zinc-800 text-xs font-extrabold shadow-sm">
                     {getCategoryIcon(project.category)}
-                    <span className="text-zinc-700 font-mono text-[9px] uppercase tracking-widest">{project.category}</span>
+                    <span className="text-zinc-705 dark:text-zinc-300 font-mono text-[9px] uppercase tracking-widest">{project.category}</span>
                   </div>
                 </div>
 
                 {/* Details Body */}
                 <div className="p-6 flex flex-col flex-grow gap-4">
                   <div className="space-y-2">
-                    <h3 className="text-base sm:text-lg font-sans font-extrabold text-zinc-950 group-hover:text-teal-600 transition-colors duration-200">
+                    <h3 className="text-base sm:text-lg font-sans font-extrabold text-zinc-950 dark:text-zinc-50 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors duration-200">
                       {project.title}
                     </h3>
-                    <p className="text-zinc-500 text-xs sm:text-sm leading-relaxed font-semibold line-clamp-2">
+                    <p className="text-zinc-505 dark:text-zinc-400 text-xs sm:text-sm leading-relaxed font-semibold line-clamp-2">
                       {project.description}
                     </p>
                   </div>
@@ -106,37 +106,37 @@ export default function Projects() {
                     {project.tags.slice(0, 4).map((tag) => (
                       <span 
                         key={tag} 
-                        className="text-[9px] font-mono font-bold px-2 py-0.5 rounded bg-zinc-50 border border-zinc-200 text-zinc-500"
+                        className="text-[9px] font-mono font-bold px-2 py-0.5 rounded bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-805 text-zinc-505 dark:text-zinc-400"
                       >
                         {tag}
                       </span>
                     ))}
                     {project.tags.length > 4 && (
-                      <span className="text-[9px] font-mono px-2 py-0.5 rounded bg-teal-50 border border-teal-100 text-teal-800 font-extrabold">
+                      <span className="text-[9px] font-mono px-2 py-0.5 rounded bg-teal-50 dark:bg-teal-950/40 border border-teal-100 dark:border-teal-900/50 text-teal-800 dark:text-teal-300 font-extrabold">
                         +{project.tags.length - 4} more
                       </span>
                     )}
                   </div>
 
                   {/* Actions footer */}
-                  <div className="mt-auto pt-4 border-t border-zinc-100 flex items-center justify-between">
+                  <div className="mt-auto pt-4 border-t border-zinc-100 dark:border-zinc-800 flex items-center justify-between">
                     <button
                       onClick={() => setSelectedProject(project)}
-                      className="text-xs font-bold text-teal-600 hover:text-teal-800 flex items-center gap-1.5 cursor-pointer"
+                      className="text-xs font-bold text-teal-605 dark:text-teal-400 hover:text-teal-800 dark:hover:text-teal-300 flex items-center gap-1.5 cursor-pointer"
                       id={`project-view-details-${project.id}`}
                     >
                       <span>Explore Technical Docs</span>
                       <span>&rarr;</span>
                     </button>
                     
-                    <div className="flex items-center gap-3 text-zinc-400">
+                    <div className="flex items-center gap-3 text-zinc-400 dark:text-zinc-500">
                       {project.github && (
-                        <a href={project.github} target="_blank" rel="noopener noreferrer" className="hover:text-zinc-900 transition-colors" aria-label="GitHub Repository Code">
+                        <a href={project.github} target="_blank" rel="noopener noreferrer" className="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors" aria-label="GitHub Repository Code">
                           <Github size={15} />
                         </a>
                       )}
                       {project.link && (
-                        <a href={project.link} target="_blank" rel="noopener noreferrer" className="hover:text-zinc-900 transition-colors" aria-label="Live Demo Link">
+                        <a href={project.link} target="_blank" rel="noopener noreferrer" className="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors" aria-label="Live Demo Link">
                           <ExternalLink size={15} />
                         </a>
                       )}
@@ -156,25 +156,25 @@ export default function Projects() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-zinc-900/40 backdrop-blur-md z-50 flex items-center justify-center p-4 overflow-y-auto"
+              className="fixed inset-0 bg-zinc-900/40 dark:bg-zinc-950/70 backdrop-blur-md z-50 flex items-center justify-center p-4 overflow-y-auto"
               id="project-details-overlay"
             >
               <motion.div
                 initial={{ scale: 0.98, y: 12 }}
                 animate={{ scale: 1, y: 0 }}
                 exit={{ scale: 0.98, y: 12 }}
-                className="bg-white border border-zinc-200 max-w-2xl w-full rounded-2xl overflow-hidden shadow-xl overflow-y-auto max-h-[88vh] text-left"
+                className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 max-w-2xl w-full rounded-2xl overflow-hidden shadow-xl overflow-y-auto max-h-[88vh] text-left"
                 id="project-details-modal"
               >
                 {/* Visual Image container with blurry ambient background */}
-                <div className="relative aspect-video w-full bg-zinc-50 border-b border-zinc-150">
+                <div className="relative aspect-video w-full bg-zinc-50 dark:bg-zinc-950 border-b border-zinc-150 dark:border-zinc-800">
                   <img 
                     src={selectedProject.image} 
                     alt={selectedProject.title} 
                     className="w-full h-full object-cover"
                     referrerPolicy="no-referrer"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-white/95 via-transparent to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-white/95 dark:from-zinc-900/95 via-transparent to-transparent pointer-events-none" />
                   
                   {/* Close dialogue button */}
                   <button
@@ -194,10 +194,10 @@ export default function Projects() {
                   
                   {/* Header categorization tag */}
                   <div className="space-y-1.5">
-                    <span className="text-[9px] font-mono font-extrabold py-0.5 px-3 rounded-full bg-teal-50 border border-teal-150 text-teal-800 uppercase tracking-widest inline-block">
+                    <span className="text-[9px] font-mono font-extrabold py-0.5 px-3 rounded-full bg-teal-50 dark:bg-teal-950/40 border border-teal-150 dark:border-teal-900/50 text-teal-800 dark:text-teal-300 uppercase tracking-widest inline-block">
                       {selectedProject.category}
                     </span>
-                    <h3 className="text-xl md:text-2xl font-sans font-extrabold text-zinc-950">
+                    <h3 className="text-xl md:text-2xl font-sans font-extrabold text-zinc-950 dark:text-zinc-50">
                       {selectedProject.title}
                     </h3>
                   </div>
@@ -207,7 +207,7 @@ export default function Projects() {
                     {selectedProject.tags.map((tag) => (
                       <span 
                         key={tag} 
-                        className="text-[10px] font-mono font-bold px-2.5 py-1 rounded bg-zinc-50 border border-zinc-200 text-zinc-650"
+                        className="text-[10px] font-mono font-bold px-2.5 py-1 rounded bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-805 text-zinc-650 dark:text-zinc-400"
                       >
                         {tag}
                       </span>
@@ -216,21 +216,21 @@ export default function Projects() {
 
                   {/* description block */}
                   <div className="space-y-2">
-                    <h4 className="text-[10px] font-mono tracking-wider uppercase text-zinc-405 font-bold">Concept Overview</h4>
-                    <p className="text-zinc-750 text-xs sm:text-sm font-semibold leading-relaxed">
+                    <h4 className="text-[10px] font-mono tracking-wider uppercase text-zinc-400 dark:text-zinc-500 font-bold">Concept Overview</h4>
+                    <p className="text-zinc-750 dark:text-zinc-300 text-xs sm:text-sm font-semibold leading-relaxed">
                       {selectedProject.longDescription}
                     </p>
                   </div>
 
                   {/* Highlights section */}
-                  <div className="space-y-3 pt-4 border-t border-zinc-150">
-                    <h5 className="text-[10px] font-mono tracking-wider uppercase text-zinc-405 font-bold flex items-center gap-1.5">
-                      <Crosshair className="text-teal-600 animate-pulse" size={13} /> Engineering Specs & milestones
+                  <div className="space-y-3 pt-4 border-t border-zinc-150 dark:border-zinc-800">
+                    <h5 className="text-[10px] font-mono tracking-wider uppercase text-zinc-400 dark:text-zinc-500 font-bold flex items-center gap-1.5">
+                      <Crosshair className="text-teal-600 dark:text-teal-400 animate-pulse" size={13} /> Engineering Specs & milestones
                     </h5>
                     
                     <ul className="space-y-2 select-text">
                       {selectedProject.highlights.map((hlt, idx) => (
-                        <li key={idx} className="flex gap-2.5 items-start text-xs sm:text-sm text-zinc-600 font-semibold leading-relaxed">
+                        <li key={idx} className="flex gap-2.5 items-start text-xs sm:text-sm text-zinc-600 dark:text-zinc-300 font-semibold leading-relaxed">
                           <span className="w-1.5 h-1.5 bg-teal-500 rounded-full mt-2 shrink-0" />
                           <span>{hlt}</span>
                         </li>
@@ -239,14 +239,14 @@ export default function Projects() {
                   </div>
 
                   {/* Actions bottom strip */}
-                  <div className="pt-5 border-t border-zinc-150 flex flex-wrap gap-4 items-center justify-between">
+                  <div className="pt-5 border-t border-zinc-150 dark:border-zinc-800 flex flex-wrap gap-4 items-center justify-between">
                     <div className="flex gap-2.5">
                       {selectedProject.github && (
                         <a 
                           href={selectedProject.github} 
                           target="_blank" 
                           rel="noopener noreferrer" 
-                          className="flex items-center gap-1.5 px-3 py-2 text-xs font-bold border border-zinc-200 hover:border-teal-500 hover:text-teal-600 rounded-lg text-zinc-600 transition"
+                          className="flex items-center gap-1.5 px-3 py-2 text-xs font-bold border border-zinc-200 dark:border-zinc-800 hover:border-teal-500 dark:hover:border-teal-400 hover:text-teal-600 dark:hover:text-teal-300 rounded-lg text-zinc-600 dark:text-zinc-400 transition"
                         >
                           <Github size={13} /> GitHub Source
                         </a>
@@ -257,7 +257,7 @@ export default function Projects() {
                           href={selectedProject.link} 
                           target="_blank" 
                           rel="noopener noreferrer" 
-                          className="flex items-center gap-1.5 px-4 py-2 text-xs font-bold bg-zinc-950 text-white rounded-lg hover:bg-teal-600 transition"
+                          className="flex items-center gap-1.5 px-4 py-2 text-xs font-bold bg-zinc-950 dark:bg-zinc-50 text-white dark:text-zinc-950 rounded-lg hover:bg-teal-600 dark:hover:bg-teal-400 transition"
                         >
                           <ExternalLink size={13} /> Demo Deployment
                         </a>
@@ -266,7 +266,7 @@ export default function Projects() {
 
                     <button
                       onClick={() => setSelectedProject(null)}
-                      className="px-3.5 py-1.5 text-xs font-bold text-zinc-400 hover:text-zinc-600 rounded-lg cursor-pointer"
+                      className="px-3.5 py-1.5 text-xs font-bold text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200 rounded-lg cursor-pointer"
                     >
                       Close Document
                     </button>

@@ -109,7 +109,7 @@ export default function AITwin() {
         if (match.index > lastIndex) {
           parts.push(line.substring(lastIndex, match.index));
         }
-        parts.push(<strong key={match.index} className="text-zinc-950 font-bold">{match[1]}</strong>);
+        parts.push(<strong key={match.index} className="text-zinc-955 dark:text-zinc-50 font-bold">{match[1]}</strong>);
         lastIndex = boldRegex.lastIndex;
       }
       if (lastIndex < line.length) {
@@ -120,18 +120,18 @@ export default function AITwin() {
 
       if (line.startsWith('* ') || line.startsWith('- ')) {
         return (
-          <div key={idx} className="flex gap-2 items-start pl-2 text-zinc-700 py-1" id={`bullet-${idx}`}>
+          <div key={idx} className="flex gap-2 items-start pl-2 text-zinc-700 dark:text-zinc-300 py-1" id={`bullet-${idx}`}>
             <span className="text-teal-600 mt-1.5 shrink-0 font-extrabold">&bull;</span>
             <span className="text-xs font-semibold">{finalContent ? (typeof finalContent === 'string' ? finalContent.substring(2) : finalContent) : ''}</span>
           </div>
         );
       }
-      return <p key={idx} className="text-xs font-medium text-zinc-700 leading-relaxed mb-1">{finalContent}</p>;
+      return <p key={idx} className="text-xs font-medium text-zinc-700 dark:text-zinc-300 leading-relaxed mb-1">{finalContent}</p>;
     });
   };
 
   return (
-    <section className="py-24 px-6 md:px-12 bg-white border-y border-zinc-100" id="ai-twin-section">
+    <section className="py-24 px-6 md:px-12 bg-white dark:bg-zinc-900 border-y border-zinc-100 dark:border-zinc-800 transition-colors duration-300" id="ai-twin-section">
       <div className="w-full max-w-7xl mx-auto">
         
         {/* Intro Layout and Header */}
@@ -139,44 +139,44 @@ export default function AITwin() {
           
           {/* Left Description Info Panel */}
           <div className="lg:col-span-5 text-left space-y-6">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 border border-teal-100 text-[10px] font-bold text-teal-800 uppercase tracking-wider mb-2">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 dark:bg-teal-950/40 border border-teal-100 dark:border-teal-900/40 text-[10px] font-bold text-teal-800 dark:text-teal-300 uppercase tracking-wider mb-2">
               <Sparkles size={11} className="text-teal-600 animate-pulse" />
               Gemini AI Integration
             </div>
             
-            <h2 className="text-3xl md:text-4xl font-sans font-extrabold text-zinc-900 tracking-tight leading-tight">
+            <h2 className="text-3xl md:text-4xl font-sans font-extrabold text-zinc-900 dark:text-zinc-50 tracking-tight leading-tight">
               Instant AI Assistant <span className="text-teal-600 block sm:inline">Recruitment Sandbox</span>
             </h2>
             
-            <p className="text-zinc-500 text-sm leading-relaxed font-semibold">
+            <p className="text-zinc-500 dark:text-zinc-400 text-sm leading-relaxed font-semibold">
               Save time reading resumes! Our custom server proxies routing safely via Gemini endpoints, preserving secret API keys on the server while offering responsive knowledge relative to:
             </p>
 
-            <div className="space-y-3 font-mono text-xs text-zinc-650">
+            <div className="space-y-3 font-mono text-xs text-zinc-650 dark:text-zinc-400">
               <div className="flex gap-2.5 items-center">
-                <span className="p-1 px-1.5 rounded-lg bg-zinc-50 border border-zinc-200 text-teal-600 font-extrabold">Technical Stack</span>
-                <span className="text-zinc-500 font-semibold">Frameworks, DB indexes, APIs & Docker.</span>
+                <span className="p-1 px-1.5 rounded-lg bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700/80 text-teal-600 dark:text-teal-400 font-extrabold">Technical Stack</span>
+                <span className="text-zinc-500 dark:text-zinc-450 font-semibold">Frameworks, DB indexes, APIs & Docker.</span>
               </div>
               <div className="flex gap-2.5 items-center">
-                <span className="p-1 px-1.5 rounded-lg bg-zinc-50 border border-zinc-200 text-teal-600 font-extrabold">Availability</span>
-                <span className="text-zinc-500 font-semibold font-sans">Full-time roles, contracts & time zones.</span>
+                <span className="p-1 px-1.5 rounded-lg bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700/80 text-teal-600 dark:text-teal-400 font-extrabold">Availability</span>
+                <span className="text-zinc-500 dark:text-zinc-455 font-semibold font-sans">Full-time roles, contracts & time zones.</span>
               </div>
               <div className="flex gap-2.5 items-center">
-                <span className="p-1 px-1.5 rounded-lg bg-zinc-50 border border-zinc-200 text-teal-600 font-extrabold">Engineering Specs</span>
-                <span className="text-zinc-500 font-semibold">Latencies, modular schemas & architecture.</span>
+                <span className="p-1 px-1.5 rounded-lg bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700/80 text-teal-600 dark:text-teal-400 font-extrabold">Engineering Specs</span>
+                <span className="text-zinc-500 dark:text-zinc-455 font-semibold">Latencies, modular schemas & architecture.</span>
               </div>
             </div>
 
-            <p className="text-[10px] text-zinc-400 font-mono italic">
+            <p className="text-[10px] text-zinc-400 dark:text-zinc-500 font-mono italic">
               *The environment secures full environment key encryption ensuring secure client proxies.
             </p>
           </div>
 
           {/* Interactive Modern Chat Window Container (Right) */}
-          <div className="lg:col-span-7 flex flex-col h-[520px] rounded-2xl border border-zinc-200 bg-white overflow-hidden shadow-xs relative" id="ai-chat-interface-box">
+          <div className="lg:col-span-7 flex flex-col h-[520px] rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 overflow-hidden shadow-xs relative transition-colors" id="ai-chat-interface-box">
             
             {/* Window Header */}
-            <div className="p-3.5 bg-zinc-55 border-b border-zinc-200/80 flex items-center justify-between z-10">
+            <div className="p-3.5 bg-zinc-50 dark:bg-zinc-900 border-b border-zinc-200/80 dark:border-zinc-800 flex items-center justify-between z-10">
               <div className="flex items-center gap-2.5">
                 <div className="relative">
                   <span className="relative flex h-2 w-2">
@@ -185,17 +185,17 @@ export default function AITwin() {
                   </span>
                 </div>
                 <div className="text-left">
-                  <span className="block text-xs font-bold text-zinc-900 uppercase tracking-wider flex items-center gap-1">
+                  <span className="block text-xs font-bold text-zinc-900 dark:text-zinc-100 uppercase tracking-wider flex items-center gap-1">
                     Arhum AI Copilot <Sparkles size={11} className="text-teal-500" />
                   </span>
-                  <span className="block text-[8px] font-mono text-zinc-400 uppercase tracking-widest font-extrabold">Active Status</span>
+                  <span className="block text-[8px] font-mono text-zinc-400 dark:text-zinc-500 uppercase tracking-widest font-extrabold">Active Status</span>
                 </div>
               </div>
 
               {/* Clear button */}
               <button 
                 onClick={handleClearHistory}
-                className="text-zinc-400 hover:text-red-500 p-1.5 rounded-lg hover:bg-zinc-100 transition-all cursor-pointer"
+                className="text-zinc-400 dark:text-zinc-505 hover:text-red-500 p-1.5 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-all cursor-pointer"
                 title="Discard memories"
                 id="clear-chat-history-btn"
               >
@@ -204,7 +204,7 @@ export default function AITwin() {
             </div>
 
             {/* Scrollable chat body */}
-            <div className="flex-grow overflow-y-auto p-4 md:p-6 space-y-4 bg-zinc-50/50 flex flex-col">
+            <div className="flex-grow overflow-y-auto p-4 md:p-6 space-y-4 bg-zinc-50/50 dark:bg-zinc-950/20 flex flex-col">
               {messages.map((msg) => (
                 <div 
                   key={msg.id}
@@ -214,7 +214,7 @@ export default function AITwin() {
                   <div className={`p-2 rounded-lg shrink-0 h-8 w-8 flex items-center justify-center border text-xs font-bold ${
                     msg.sender === 'user' 
                       ? 'bg-teal-600 border-teal-600 text-white shadow-xs' 
-                      : 'bg-white border-zinc-200 text-zinc-500'
+                      : 'bg-white dark:bg-zinc-805 border-zinc-200 dark:border-zinc-705 text-zinc-500 dark:text-zinc-400'
                   }`}>
                     {msg.sender === 'user' ? <User size={13} /> : <MessageSquare size={13} />}
                   </div>
@@ -222,17 +222,17 @@ export default function AITwin() {
                   {/* Bubble body with beautiful zinc framing */}
                   <div className={`p-3 rounded-lg flex flex-col shadow-[0_1px_2px_rgba(0,0,0,0.03)] ${
                     msg.sender === 'user'
-                      ? 'bg-white border border-teal-100 text-zinc-900 rounded-tr-none text-left'
-                      : 'bg-white border border-zinc-200/80 text-zinc-700 rounded-tl-none'
+                      ? 'bg-white dark:bg-zinc-850 border border-teal-100 dark:border-teal-900/40 text-zinc-900 dark:text-zinc-150 rounded-tr-none text-left'
+                      : 'bg-white dark:bg-zinc-800 border border-zinc-200/80 dark:border-zinc-700 text-zinc-700 dark:text-zinc-350 rounded-tl-none'
                   }`}>
                     <div className="space-y-1">
                       {msg.sender === 'user' ? (
-                        <p className="text-xs font-semibold text-zinc-800 leading-relaxed">{msg.text}</p>
+                        <p className="text-xs font-semibold text-zinc-805 dark:text-zinc-150 leading-relaxed">{msg.text}</p>
                       ) : (
                         renderMessageText(msg.text)
                       )}
                     </div>
-                    <span className="mt-1 text-[8px] text-zinc-400 font-mono font-medium italic">
+                    <span className="mt-1 text-[8px] text-zinc-400 dark:text-zinc-505 font-mono font-medium italic">
                       {msg.timestamp}
                     </span>
                   </div>
@@ -242,14 +242,14 @@ export default function AITwin() {
               {/* Loading placeholder animation */}
               {isLoading && (
                 <div className="flex gap-3 max-w-[85%] mr-auto text-left" id="loading-bubble-container">
-                  <div className="p-2 rounded-lg h-8 w-8 bg-white border border-zinc-200 flex items-center justify-center">
+                  <div className="p-2 rounded-lg h-8 w-8 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 flex items-center justify-center">
                     <MessageSquare size={13} className="text-teal-500 animate-pulse" />
                   </div>
-                  <div className="p-3 rounded-lg bg-white border border-zinc-200 text-zinc-500 rounded-tl-none flex items-center gap-1.5 shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
-                    <span className="w-1 h-1 rounded-full bg-teal-500 animate-bounce [animation-delay:-0.3s]" />
-                    <span className="w-1 h-1 rounded-full bg-teal-500 animate-bounce [animation-delay:-0.15s]" />
-                    <span className="w-1 h-1 rounded-full bg-teal-500 animate-bounce" />
-                    <span className="text-[10px] font-mono pl-1 text-zinc-400 font-semibold font-sans">Drafting response...</span>
+                  <div className="p-3 rounded-lg bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-550 dark:text-zinc-400 rounded-tl-none flex items-center gap-1.5 shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
+                    <span className="w-1.5 h-1.5 rounded-full bg-teal-500 animate-bounce [animation-delay:-0.3s]" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-teal-500 animate-bounce [animation-delay:-0.15s]" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-teal-500 animate-bounce" />
+                    <span className="text-[10px] font-mono pl-1 text-zinc-400 dark:text-zinc-500 font-semibold">Drafting response...</span>
                   </div>
                 </div>
               )}
@@ -259,14 +259,14 @@ export default function AITwin() {
 
             {/* Quick Starters suggested chips */}
             {messages.length < 3 && !isLoading && (
-              <div className="px-4 py-2 border-t border-zinc-200 bg-zinc-50/70 text-left z-10">
-                <span className="text-[9px] font-mono uppercase tracking-widest text-zinc-400 font-bold block mb-1">Common Questions</span>
+              <div className="px-4 py-2 border-t border-zinc-200 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-850 text-left z-10">
+                <span className="text-[9px] font-mono uppercase tracking-widest text-zinc-400 dark:text-zinc-500 font-bold block mb-1">Common Questions</span>
                 <div className="flex flex-wrap gap-1.5">
                   {starterQuestions.map((q) => (
                     <button
                       key={q.text}
                       onClick={() => handleSendMessage(q.text)}
-                      className="text-[10px] px-2.5 py-1 rounded-md bg-white border border-zinc-250 hover:border-teal-500 text-zinc-650 hover:text-teal-700 font-bold flex items-center gap-1 cursor-pointer transition-all duration-150"
+                      className="text-[10px] px-2.5 py-1 rounded-md bg-white dark:bg-zinc-805 border border-zinc-250 dark:border-zinc-705 hover:border-teal-500 text-zinc-650 dark:text-zinc-300 hover:text-teal-700 dark:hover:text-teal-400 font-bold flex items-center gap-1 cursor-pointer transition-all duration-150"
                       id={`starter-btn-${q.label.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}
                     >
                       <span>{q.label}</span>
@@ -278,7 +278,7 @@ export default function AITwin() {
             )}
 
             {/* Input form panel */}
-            <div className="p-3 bg-white border-t border-zinc-200 z-10">
+            <div className="p-3 bg-white dark:bg-zinc-900 border-t border-zinc-200 dark:border-zinc-800 z-10">
               <form 
                 onSubmit={(e) => {
                   e.preventDefault();
@@ -292,7 +292,7 @@ export default function AITwin() {
                   required
                   onChange={(e) => setInputMessage(e.target.value)}
                   placeholder="Ask my AI Twin... (e.g., 'What systems work did you do?')"
-                  className="flex-grow bg-zinc-50 border border-zinc-200 focus:border-teal-500 text-zinc-850 text-xs rounded-lg px-3 py-2.5 placeholder-zinc-400 outline-none transition"
+                  className="flex-grow bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 focus:border-teal-500 text-zinc-850 dark:text-zinc-100 text-xs rounded-lg px-3 py-2.5 placeholder-zinc-400 dark:placeholder-zinc-500 outline-none transition"
                   id="chat-input-text-field"
                   disabled={isLoading}
                 />
@@ -300,10 +300,10 @@ export default function AITwin() {
                 <button 
                   type="submit"
                   disabled={isLoading || !inputMessage.trim()}
-                  className="p-2.5 bg-zinc-950 disabled:opacity-40 hover:bg-teal-600 text-white rounded-lg transition-all flex items-center justify-center shrink-0 cursor-pointer shadow-xs active:scale-95"
+                  className="p-2.5 bg-zinc-950 dark:bg-zinc-50 disabled:opacity-40 hover:bg-teal-650 dark:hover:bg-teal-500 text-white dark:text-zinc-950 rounded-lg transition-all flex items-center justify-center shrink-0 cursor-pointer shadow-xs active:scale-95"
                   id="chat-send-submit-btn"
                 >
-                  <Send size={13} />
+                  <Send size={13} className="dark:text-zinc-950" />
                 </button>
               </form>
             </div>

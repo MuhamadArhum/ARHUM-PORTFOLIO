@@ -30,16 +30,16 @@ export default function Hero({ onContactClick, onProjectsClick }: HeroProps) {
   };
 
   return (
-    <section className="relative min-h-[82vh] flex items-center justify-center py-20 px-6 md:px-12 overflow-hidden bg-white">
+    <section className="relative min-h-[82vh] flex items-center justify-center py-20 px-6 md:px-12 overflow-hidden bg-white dark:bg-zinc-900 transition-colors duration-300">
       
       {/* Decorative Pristine Atmospheric Accents */}
       <div className="absolute inset-0 z-0 opacity-30 overflow-hidden pointer-events-none">
-        <div className="absolute top-12 left-12 w-[380px] h-[380px] rounded-full bg-radial from-teal-50 to-transparent blur-3xl animate-pulse-slow" />
-        <div className="absolute -bottom-16 right-16 w-[480px] h-[480px] rounded-full bg-radial from-amber-50 to-transparent blur-3xl animate-pulse-slow" />
+        <div className="absolute top-12 left-12 w-[380px] h-[380px] rounded-full bg-radial from-teal-50 dark:from-teal-950/20 to-transparent blur-3xl animate-pulse-slow" />
+        <div className="absolute -bottom-16 right-16 w-[480px] h-[480px] rounded-full bg-radial from-amber-50 dark:from-amber-950/20 to-transparent blur-3xl animate-pulse-slow" />
       </div>
 
       {/* Exquisite micro-dotted pattern background */}
-      <div className="absolute inset-0 bg-[radial-gradient(#e4e4e7_1.2px,transparent_1.2px)] [background-size:24px_24px] opacity-40 pointer-events-none z-0" />
+      <div className="absolute inset-0 bg-[radial-gradient(#e4e4e7_1.2px,transparent_1.2px)] dark:bg-[radial-gradient(#27272a_1.2px,transparent_1.2px)] [background-size:24px_24px] opacity-40 pointer-events-none z-0" />
 
       <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center relative z-10">
         
@@ -53,7 +53,7 @@ export default function Hero({ onContactClick, onProjectsClick }: HeroProps) {
           {/* Active Status Badge in high-contrast Royal Blue */}
           <motion.div 
             variants={itemVariants}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-50 border border-teal-100 text-xs font-bold text-teal-800"
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-50 dark:bg-teal-950/40 border border-teal-100 dark:border-teal-900/55 text-xs font-bold text-teal-800 dark:text-teal-300"
             id="availability-badge"
           >
             <span className="relative flex h-2 w-2">
@@ -65,21 +65,21 @@ export default function Hero({ onContactClick, onProjectsClick }: HeroProps) {
 
           {/* Heading */}
           <div className="space-y-3">
-            <motion.div variants={itemVariants} className="flex items-center gap-1.5 text-teal-600">
+            <motion.div variants={itemVariants} className="flex items-center gap-1.5 text-teal-605">
               <Sparkles size={13} className="text-teal-600 animate-pulse" />
-              <span className="font-mono text-[9px] tracking-widest uppercase font-bold text-zinc-500">Systems & Solutions Portfolio</span>
+              <span className="font-mono text-[9px] tracking-widest uppercase font-bold text-zinc-500 dark:text-zinc-400">Systems & Solutions Portfolio</span>
             </motion.div>
             
             <motion.h1 
               variants={itemVariants} 
-              className="text-4xl sm:text-5xl lg:text-6xl font-sans font-extrabold tracking-tight text-zinc-950 leading-[1.08]"
+              className="text-4xl sm:text-5xl lg:text-6xl font-sans font-extrabold tracking-tight text-zinc-950 dark:text-zinc-50 leading-[1.08]"
             >
-              Hi, I am <span className="bg-gradient-to-r from-teal-600 via-emerald-600 to-amber-600 bg-clip-text text-transparent block mt-1">{PERSONAL_INFO.name}</span>
+              Hi, I am <span className="bg-gradient-to-r from-teal-600 via-emerald-600 to-amber-605 bg-clip-text text-transparent block mt-1">{PERSONAL_INFO.name}</span>
             </motion.h1>
             
             <motion.h2 
               variants={itemVariants} 
-              className="text-base sm:text-lg font-bold text-zinc-700 tracking-wide flex items-center gap-2"
+              className="text-base sm:text-lg font-bold text-zinc-700 dark:text-zinc-300 tracking-wide flex items-center gap-2"
             >
               <span className="h-1.5 w-1.5 rounded-full bg-teal-600" />
               {PERSONAL_INFO.title}
@@ -89,7 +89,7 @@ export default function Hero({ onContactClick, onProjectsClick }: HeroProps) {
           {/* Short Bio */}
           <motion.p 
             variants={itemVariants} 
-            className="text-sm sm:text-base text-zinc-600 max-w-2xl leading-relaxed"
+            className="text-sm sm:text-base text-zinc-650 dark:text-zinc-400 max-w-2xl leading-relaxed"
           >
             {PERSONAL_INFO.bioBrief}
           </motion.p>
@@ -97,13 +97,13 @@ export default function Hero({ onContactClick, onProjectsClick }: HeroProps) {
           {/* Location details */}
           <motion.div 
             variants={itemVariants}
-            className="flex flex-wrap items-center gap-y-2 gap-x-6 text-xs text-zinc-500 font-mono py-2.5 border-y border-zinc-150/80 w-full md:w-auto"
+            className="flex flex-wrap items-center gap-y-2 gap-x-6 text-xs text-zinc-550 dark:text-zinc-400 font-mono py-2.5 border-y border-zinc-150/80 dark:border-zinc-800 w-full md:w-auto"
           >
             <span className="flex items-center gap-1.5">
               <MapPin size={13} className="text-teal-600" />
               {PERSONAL_INFO.location}
             </span>
-            <span className="flex items-center gap-1.5 sm:border-l sm:border-zinc-200 sm:pl-6">
+            <span className="flex items-center gap-1.5 sm:border-l sm:border-zinc-200 dark:sm:border-zinc-800 sm:pl-6">
               <span className="w-1.5 h-1.5 rounded-full bg-amber-600" />
               Timezone: {PERSONAL_INFO.timezone} (PKT offset)
             </span>
@@ -116,14 +116,14 @@ export default function Hero({ onContactClick, onProjectsClick }: HeroProps) {
           >
             <button 
               onClick={onProjectsClick}
-              className="px-5 py-2.5 rounded-lg font-bold text-white bg-zinc-950 hover:bg-teal-600 active:scale-[0.98] transition-all duration-200 cursor-pointer text-xs uppercase tracking-wider"
+              className="px-5 py-2.5 rounded-lg font-bold text-white dark:text-zinc-950 bg-zinc-950 dark:bg-zinc-50 hover:bg-teal-650 dark:hover:bg-teal-500 active:scale-[0.98] transition-all duration-200 cursor-pointer text-xs uppercase tracking-wider"
               id="hero-explore-work-btn"
             >
               View My Work
             </button>
             <button 
               onClick={onContactClick}
-              className="px-5 py-2.5 rounded-lg font-bold text-zinc-800 bg-zinc-50 hover:bg-zinc-100 border border-zinc-250 active:scale-[0.98] transition-all duration-200 cursor-pointer text-xs uppercase tracking-wider"
+              className="px-5 py-2.5 rounded-lg font-bold text-zinc-850 dark:text-zinc-250 bg-zinc-50 dark:bg-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-750 border border-zinc-250 dark:border-zinc-700 active:scale-[0.98] transition-all duration-200 cursor-pointer text-xs uppercase tracking-wider"
               id="hero-get-in-touch-btn"
             >
               Get In Touch
@@ -133,15 +133,15 @@ export default function Hero({ onContactClick, onProjectsClick }: HeroProps) {
           {/* Anchor channels */}
           <motion.div 
             variants={itemVariants}
-            className="flex items-center gap-5 pt-5 text-zinc-400 border-t border-zinc-100 w-full"
+            className="flex items-center gap-5 pt-5 text-zinc-400 dark:text-zinc-500 border-t border-zinc-100 dark:border-zinc-800 w-full"
           >
-            <span className="text-[9px] font-mono uppercase tracking-widest text-zinc-400 font-bold">Directories</span>
+            <span className="text-[9px] font-mono uppercase tracking-widest text-zinc-400 dark:text-zinc-500 font-bold">Directories</span>
             
             <a 
               href={PERSONAL_INFO.github} 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="text-zinc-500 hover:text-teal-600 transition-colors duration-200"
+              className="text-zinc-500 hover:text-teal-600 dark:text-zinc-400 dark:hover:text-teal-400 transition-colors duration-200"
               aria-label="GitHub Account Link"
             >
               <Github size={16} />
@@ -151,7 +151,7 @@ export default function Hero({ onContactClick, onProjectsClick }: HeroProps) {
               href={PERSONAL_INFO.linkedin} 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="text-zinc-500 hover:text-teal-600 transition-colors duration-200"
+              className="text-zinc-500 hover:text-teal-600 dark:text-zinc-400 dark:hover:text-teal-400 transition-colors duration-200"
               aria-label="LinkedIn Profile Link"
             >
               <Linkedin size={16} />
@@ -159,7 +159,7 @@ export default function Hero({ onContactClick, onProjectsClick }: HeroProps) {
             
             <a 
               href={`mailto:${PERSONAL_INFO.email}`}
-              className="text-zinc-500 hover:text-teal-600 transition-colors duration-200"
+              className="text-zinc-500 hover:text-teal-600 dark:text-zinc-400 dark:hover:text-teal-400 transition-colors duration-200"
               aria-label="Direct Email Connection"
             >
               <Mail size={16} />
@@ -167,12 +167,12 @@ export default function Hero({ onContactClick, onProjectsClick }: HeroProps) {
 
             <a 
               href={PERSONAL_INFO.resumeUrl} 
-              className="text-zinc-500 hover:text-teal-600 hover:bg-teal-50/50 transition-all duration-250 flex items-center gap-1 text-[10px] font-mono font-bold uppercase border border-zinc-200 px-2.5 py-1 rounded-lg"
+              className="text-zinc-500 dark:text-zinc-400 hover:text-teal-600 dark:hover:text-teal-400 hover:bg-teal-50/50 dark:hover:bg-teal-950/20 transition-all duration-250 flex items-center gap-1 text-[10px] font-mono font-bold uppercase border border-zinc-200 dark:border-zinc-750 px-2.5 py-1 rounded-lg"
               aria-label="Download Professional Resume Profile"
             >
               <FileText size={12} />
               <span>Resume</span>
-              <ArrowUpRight size={10} className="text-zinc-400" />
+              <ArrowUpRight size={10} className="text-zinc-400 dark:text-zinc-550" />
             </a>
           </motion.div>
         </motion.div>
