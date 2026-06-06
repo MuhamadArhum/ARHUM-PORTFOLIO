@@ -1,0 +1,6 @@
+{
+  "name": "Developer Portfolio",
+  "description": "A professional developer portfolio website with an interactive AI chat twin of Muhammad Arhum powered by Gemini Pro to answer resume and career queries.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
