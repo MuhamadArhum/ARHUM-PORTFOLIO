@@ -1,0 +1,62 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Global Safety Net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Primitive Definitions
+    function isValidId(id) { 
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$'); 
+    }
+    
+    function incoming() { 
+      return request.resource.data; 
+    }
+    
+    function existing() { 
+      return resource.data; 
+    }
+    
+    function isSignedIn() { 
+      return request.auth != null; 
+    }
+    
+    function isAdmin() { 
+      return isSignedIn() && 
+             request.auth.token.email == "muhamadarhum425@gmail.com" && 
+             request.auth.token.email_verified == true;
+    }
+
+    // Entity validation helper (Strict key verification and bounds)
+    function isValidMessage(data) {
+      return data.keys().hasAll(['name', 'email', 'message', 'status', 'createdAt']) &&
+             data.keys().size() == 5 &&
+             data.name is string && data.name.size() >= 2 && data.name.size() <= 100 &&
+             data.email is string && data.email.size() >= 5 && data.email.size() <= 150 &&
+             data.message is string && data.message.size() >= 3 && data.message.size() <= 3000 &&
+             data.status is string && (data.status == 'unread' || data.status == 'read' || data.status == 'responded') &&
+             data.createdAt is timestamp;
+    }
+
+    match /messages/{messageId} {
+      // Public write access for portfolio visitor messages
+      allow create: if isValidId(messageId) && 
+                       isValidMessage(incoming()) &&
+                       incoming().createdAt == request.time &&
+                       incoming().status == 'unread';
+
+      // Secure Administrative reads and modifications restricted to Muhammad Arhum
+      allow get, list: if isAdmin();
+      
+      allow update: if isValidMessage(incoming()) && 
+                       isAdmin() && 
+                       incoming().createdAt == existing().createdAt &&
+                       incoming().diff(existing()).affectedKeys().hasOnly(['status']);
+                       
+      allow delete: if isAdmin();
+    }
+  }
+}

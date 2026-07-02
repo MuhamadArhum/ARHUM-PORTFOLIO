@@ -1,0 +1,54 @@
+{
+  "entities": {
+    "Message": {
+      "title": "Message",
+      "description": "A contact inquiry message sent by portfolio visitors",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The visitor's name"
+        },
+        "email": {
+          "type": "string",
+          "description": "The visitor's email address"
+        },
+        "subject": {
+          "type": "string",
+          "description": "The message subject"
+        },
+        "message": {
+          "type": "string",
+          "description": "The detailed message body"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "unread",
+            "read",
+            "responded"
+          ],
+          "description": "Status of the message"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the message was created"
+        }
+      },
+      "required": [
+        "name",
+        "email",
+        "message",
+        "status",
+        "createdAt"
+      ]
+    }
+  },
+  "firestore": {
+    "/messages/{messageId}": {
+      "schema": "Message",
+      "description": "Visitor contact inquiry messages"
+    }
+  }
+}

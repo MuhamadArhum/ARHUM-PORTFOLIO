@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Camera, RefreshCw } from 'lucide-react';
+import defaultAvatar from '../assets/images/profile_avatar_user_uploaded_1783015244781.jpg';
 
 export default function ProfileImage() {
   const [imageSrc, setImageSrc] = useState<string | null>(null);
+  const [isDragging, setIsDragging] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Load saved profile photo from localStorage
@@ -13,9 +15,8 @@ export default function ProfileImage() {
     }
   }, []);
 
-  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
+  const processFile = (file: File) => {
+    if (file && file.type.startsWith('image/')) {
       const reader = new FileReader();
       reader.onloadend = () => {
         const base64String = reader.result as string;
@@ -28,6 +29,31 @@ export default function ProfileImage() {
         }
       };
       reader.readAsDataURL(file);
+    }
+  };
+
+  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      processFile(file);
+    }
+  };
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragging(true);
+  };
+
+  const handleDragLeave = () => {
+    setIsDragging(false);
+  };
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragging(false);
+    const file = e.dataTransfer.files?.[0];
+    if (file) {
+      processFile(file);
     }
   };
 
@@ -45,7 +71,14 @@ export default function ProfileImage() {
     <div className="relative group flex flex-col items-center justify-center">
       <div 
         onClick={triggerUpload}
-        className="cursor-pointer relative w-64 h-64 md:w-76 md:h-76 rounded-2xl overflow-hidden border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-850/60 shadow-xs flex items-center justify-center group-hover:border-teal-500 hover:shadow-md transition-all duration-300 transform group-hover:scale-[1.005]"
+        onDragOver={handleDragOver}
+        onDragLeave={handleDragLeave}
+        onDrop={handleDrop}
+        className={`cursor-pointer relative w-64 h-64 md:w-76 md:h-76 rounded-2xl overflow-hidden border bg-zinc-50 dark:bg-zinc-850/60 shadow-xs flex items-center justify-center transition-all duration-300 transform group-hover:scale-[1.005] ${
+          isDragging 
+            ? 'border-teal-500 ring-4 ring-teal-500/15 bg-teal-50/20' 
+            : 'border-zinc-200 dark:border-zinc-800 group-hover:border-teal-500 hover:shadow-md'
+        }`}
         id="profile-picture-container"
       >
         {/* Soft high-end visual gradient overlays */}
@@ -65,80 +98,12 @@ export default function ProfileImage() {
             referrerPolicy="no-referrer"
           />
         ) : (
-          /* High-end modern SVGs representation aligned securely to professional specifications */
-          <div className="w-full h-full flex flex-col items-center justify-center p-6 bg-zinc-50 dark:bg-zinc-850/20 relative">
-            <svg 
-              viewBox="0 0 200 200" 
-              className="w-44 h-44 drop-shadow-[0_4px_10px_rgba(13,148,136,0.08)]"
-            >
-              <defs>
-                <linearGradient id="tealGlow" cx="50%" cy="50%" r="50%" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#F0FDFA" />
-                  <stop offset="100%" stopColor="#CCFBF1" />
-                </linearGradient>
-              </defs>
-              <circle cx="100" cy="100" r="95" fill="url(#tealGlow)" stroke="#5EEAD4" strokeWidth="1" />
-              
-              {/* Sleek Dark Charcoal / Indigo clothing */}
-              <path 
-                d="M45,170 C45,145 70,135 100,135 C130,135 155,145 155,170 Z" 
-                fill="#18181B" 
-                stroke="#27272A" 
-                strokeWidth="1.5"
-              />
-              <polygon points="100,148 78,135 100,135" fill="#0d9488" />
-              <polygon points="100,148 122,135 100,135" fill="#0d9488" />
-              
-              {/* Neck */}
-              <rect x="90" y="115" width="20" height="25" fill="#fbcfe8" />
-              <rect x="90" y="125" width="20" height="15" fill="#0d9488" opacity="0.08" />
-
-              {/* Head / Ears */}
-              <circle cx="80" cy="98" r="9" fill="#fbcfe8" />
-              <circle cx="120" cy="98" r="9" fill="#fbcfe8" />
-              <rect x="82" y="70" width="36" height="50" rx="18" fill="#fbcfe8" />
-
-              {/* Stylized Hair */}
-              <path 
-                d="M80,72 Q100,55 120,72 Q125,75 118,65 Q110,60 100,60 Q85,60 81,65 C78,70 78,72 80,72 Z" 
-                fill="#09090B" 
-              />
-              <path d="M81,66 C75,70 79,80 81,85 C83,83 83,75 81,66 Z" fill="#09090B" />
-              <path d="M119,66 C125,70 121,80 119,85 C117,83 117,75 119,66 Z" fill="#09090B" />
-
-              {/* Eyes */}
-              <ellipse cx="92" cy="88" rx="2.5" ry="3" fill="#18181B" />
-              <ellipse cx="108" cy="88" rx="2.5" ry="3" fill="#18181B" />
-
-              {/* Eyebrows */}
-              <path d="M87,83 Q92,80 97,84" fill="transparent" stroke="#09090B" strokeWidth="2" strokeLinecap="round" />
-              <path d="M103,84 Q108,80 113,83" fill="transparent" stroke="#09090B" strokeWidth="2" strokeLinecap="round" />
-
-              {/* Nose */}
-              <path d="M100,88 L100,98 Q100,101 102,100" fill="transparent" stroke="#fda4af" strokeWidth="1.2" strokeLinecap="round" />
-
-              {/* Smile */}
-              <path d="M94,108 Q100,111 106,108" fill="transparent" stroke="#f43f5e" strokeWidth="1.2" strokeLinecap="round" />
-
-              {/* Groomed stubble */}
-              <path 
-                d="M81,95 Q80,118 100,126 Q120,118 119,95 C121,114 115,123 100,123 C85,123 79,114 81,95 Z" 
-                fill="#27272A" 
-                opacity="0.9"
-              />
-              <path 
-                d="M90,103 Q100,105 110,103 Q112,106 100,107 Q88,106 90,103 Z" 
-                fill="#27272A" 
-                opacity="0.9"
-              />
-            </svg>
-            <div className="mt-3.5 flex flex-col items-center">
-              <span className="text-sm font-bold text-zinc-950 dark:text-zinc-50">Muhammad Arhum</span>
-              <span className="text-[10px] text-zinc-400 dark:text-zinc-500 font-mono mt-1 font-semibold uppercase tracking-wider animate-pulse">
-                Click to Set Photo
-              </span>
-            </div>
-          </div>
+          <img 
+            src={defaultAvatar} 
+            alt="Muhammad Arhum Avatar" 
+            className="w-full h-full object-cover object-center relative z-10"
+            referrerPolicy="no-referrer"
+          />
         )}
 
         {/* Action overlap */}
@@ -157,6 +122,12 @@ export default function ProfileImage() {
         accept="image/*" 
         className="hidden" 
       />
+
+      <div className="mt-3.5 text-center px-4 max-w-xs">
+        <p className="text-[11px] font-medium text-zinc-500 dark:text-zinc-400">
+          ✨ <span className="font-semibold text-teal-600 dark:text-teal-400">Tip:</span> Apni original pic yahan drag karke ya click karke set karein!
+        </p>
+      </div>
 
       {imageSrc && (
         <button 
