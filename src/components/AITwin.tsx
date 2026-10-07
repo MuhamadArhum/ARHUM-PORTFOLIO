@@ -10,10 +10,10 @@ export default function AITwin() {
 
   // Suggested Starter queries for recruiting & consulting managers
   const starterQuestions = [
-    { text: 'What is Arhum\'s core tech stack?', label: 'Core Stack' },
-    { text: 'Is Arhum open to remote work or contract roles?', label: 'Role Availability' },
-    { text: 'What kind of mobile projects has he built?', label: 'Mobile History' },
-    { text: 'Tell me about his experience optimizing systems.', label: 'Performance Work' },
+    { text: 'What enterprise products has Arhum built in the Abyte suite?', label: 'Built Products' },
+    { text: 'Tell me about Abyte DineX and his POS system architecture.', label: 'Abyte DineX POS' },
+    { text: 'What is his core tech stack across frontend, backend, and desktop?', label: 'Tech Stack' },
+    { text: 'Is Arhum open to contract roles or technical leadership?', label: 'Availability' },
   ];
 
   // Set default welcoming message from AI Twin on mount

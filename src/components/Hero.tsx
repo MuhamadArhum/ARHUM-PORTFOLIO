@@ -97,7 +97,7 @@ export default function Hero({ onContactClick, onProjectsClick }: HeroProps) {
           {/* Location details */}
           <motion.div 
             variants={itemVariants}
-            className="flex flex-wrap items-center gap-y-2 gap-x-6 text-xs text-zinc-550 dark:text-zinc-400 font-mono py-2.5 border-y border-zinc-150/80 dark:border-zinc-800 w-full md:w-auto"
+            className="flex flex-wrap items-center gap-y-2 gap-x-6 text-xs text-zinc-500 dark:text-zinc-400 font-mono py-2.5 border-y border-zinc-150/80 dark:border-zinc-800 w-full md:w-auto"
           >
             <span className="flex items-center gap-1.5">
               <MapPin size={13} className="text-teal-600" />
@@ -106,6 +106,10 @@ export default function Hero({ onContactClick, onProjectsClick }: HeroProps) {
             <span className="flex items-center gap-1.5 sm:border-l sm:border-zinc-200 dark:sm:border-zinc-800 sm:pl-6">
               <span className="w-1.5 h-1.5 rounded-full bg-amber-600" />
               Timezone: {PERSONAL_INFO.timezone} (PKT offset)
+            </span>
+            <span className="flex items-center gap-1.5 sm:border-l sm:border-zinc-200 dark:sm:border-zinc-800 sm:pl-6 font-bold text-teal-600 dark:text-teal-400">
+              <span className="w-1.5 h-1.5 rounded-full bg-teal-500" />
+              16+ Shipped Products & Repos
             </span>
           </motion.div>
 

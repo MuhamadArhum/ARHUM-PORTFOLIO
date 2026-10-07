@@ -4,11 +4,14 @@ export interface Project {
   description: string;
   longDescription: string;
   tags: string[];
-  category: 'Full-Stack' | 'Mobile' | 'Systems' | 'AI';
+  category: 'POS & SaaS' | 'Enterprise ERP' | 'Full-Stack' | 'Automation & Tools' | 'Mobile & Logistics' | 'Systems';
   link?: string;
   github?: string;
   image: string;
   highlights: string[];
+  repoType?: 'Public' | 'Private' | 'Enterprise';
+  org?: string;
+  featured?: boolean;
 }
 
 export interface Experience {
