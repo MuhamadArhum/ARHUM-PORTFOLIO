@@ -14,6 +14,7 @@ export const PERSONAL_INFO = {
   timezone: 'UTC+5',
   offsetHours: 5,
   location: 'Faisalabad, Pakistan',
+  avatarUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS177eJI0gBSWHtv3DvOIo2ifl4-kAD86Xiz_xzpvVHCw&s=10',
   resumeUrl: '#',
 };
 
