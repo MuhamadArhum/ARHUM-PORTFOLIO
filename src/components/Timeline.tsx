@@ -13,26 +13,26 @@ export default function Timeline() {
   };
 
   return (
-    <section className="py-24 px-6 md:px-12 bg-white dark:bg-zinc-900 border-b border-zinc-100 dark:border-zinc-805 transition-colors duration-300" id="experience-section">
+    <section className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-12 bg-white dark:bg-zinc-900 border-b border-zinc-100 dark:border-zinc-805 transition-colors duration-300" id="experience-section">
       <div className="w-full max-w-7xl mx-auto">
         
         {/* Header Block Description */}
-        <div className="text-center max-w-3xl mx-auto mb-20 space-y-4">
+        <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-20 space-y-3.5">
           <span className="font-mono text-xs tracking-widest uppercase text-teal-600 dark:text-teal-400 font-bold inline-flex items-center gap-1">
             <Sparkles size={11} className="text-teal-600 dark:text-teal-400 animate-pulse" /> Career Chronology
           </span>
-          <h2 className="text-3xl md:text-4xl font-sans font-extrabold text-zinc-900 dark:text-zinc-50 tracking-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-sans font-extrabold text-zinc-900 dark:text-zinc-50 tracking-tight">
             Work Experience & Milestones
           </h2>
-          <p className="text-zinc-500 dark:text-zinc-400 text-sm leading-relaxed font-semibold">
+          <p className="text-zinc-500 dark:text-zinc-400 text-xs sm:text-sm leading-relaxed font-semibold">
             An established track record of guiding team microservices, designing hybrid apps, and decreasing server payload times.
           </p>
         </div>
 
         {/* Timeline Line Container */}
-        <div className="relative max-w-3xl mx-auto pl-6 md:pl-10 border-l border-zinc-200/80 dark:border-zinc-800/80 space-y-12 py-3">
+        <div className="relative max-w-3xl mx-auto pl-6 sm:pl-8 md:pl-10 border-l border-zinc-200/90 dark:border-zinc-800/90 space-y-8 sm:space-y-12 py-2">
           
-          {EXPERIENCE.map((exp, index) => (
+          {EXPERIENCE.map((exp) => (
             <motion.div
               key={exp.id}
               initial="hidden"
@@ -42,17 +42,17 @@ export default function Timeline() {
               className="relative group text-left"
               id={`timeline-card-${exp.id}`}
             >
-              {/* Timeline tracker circle */}
-              <span className="absolute -left-[31px] md:-left-[47px] top-1 flex h-4 w-4 md:h-5 md:w-5 items-center justify-center rounded-full bg-white dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 group-hover:border-teal-600 transition-colors z-10 shadow-xs">
-                <Briefcase size={8} className="text-zinc-400 dark:text-zinc-500 group-hover:text-teal-600 transition-colors" />
+              {/* Timeline tracker circle - accurately centered via -translate-x-1/2 */}
+              <span className="absolute -left-6 sm:-left-8 md:-left-10 -translate-x-1/2 top-2 flex h-5 w-5 sm:h-5.5 sm:w-5.5 items-center justify-center rounded-full bg-white dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 group-hover:border-teal-600 transition-colors z-10 shadow-xs">
+                <Briefcase size={9} className="text-zinc-400 dark:text-zinc-500 group-hover:text-teal-600 transition-colors" />
               </span>
 
-              <div className="p-6 md:p-8 bg-zinc-50/40 dark:bg-zinc-950/15 border border-zinc-200/50 dark:border-zinc-800/80 rounded-xl relative hover:border-teal-500/20 dark:hover:border-teal-500/30 hover:bg-white dark:hover:bg-zinc-900 hover:shadow-xs transition-all duration-250">
+              <div className="p-4 sm:p-6 md:p-8 bg-zinc-50/40 dark:bg-zinc-950/15 border border-zinc-200/50 dark:border-zinc-800/80 rounded-xl relative hover:border-teal-500/20 dark:hover:border-teal-500/30 hover:bg-white dark:hover:bg-zinc-900 hover:shadow-xs transition-all duration-250">
                 
                 {/* Header elements */}
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3.5 sm:mb-4">
                   <div>
-                    <h3 className="text-base md:text-lg font-sans font-extrabold text-zinc-955 dark:text-zinc-50 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
+                    <h3 className="text-sm sm:text-base md:text-lg font-sans font-extrabold text-zinc-955 dark:text-zinc-50 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
                       {exp.role}
                     </h3>
                     <p className="text-xs sm:text-sm font-bold text-teal-606 dark:text-teal-400">
@@ -67,17 +67,17 @@ export default function Timeline() {
                 </div>
 
                 {/* Achieved list bullet points */}
-                <ul className="space-y-2.5 mb-5 select-text">
+                <ul className="space-y-2 sm:space-y-2.5 mb-4 sm:mb-5 select-text">
                   {exp.description.map((item, idx) => (
                     <li key={idx} className="flex gap-2 text-xs sm:text-sm text-zinc-650 dark:text-zinc-300 leading-relaxed font-semibold items-start">
-                      <span className="w-1.5 h-1.5 rounded-full bg-teal-500/70 mt-2 shrink-0" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-teal-500/70 mt-1.5 sm:mt-2 shrink-0" />
                       <span>{item}</span>
                     </li>
                   ))}
                 </ul>
 
                 {/* Tech tags footer */}
-                <div className="flex flex-wrap gap-1.5 pt-3.5 border-t border-zinc-150 dark:border-zinc-800">
+                <div className="flex flex-wrap gap-1.5 pt-3 sm:pt-3.5 border-t border-zinc-150 dark:border-zinc-800">
                   {exp.tags.map((tag) => (
                     <span 
                       key={tag} 
@@ -101,15 +101,15 @@ export default function Timeline() {
             className="relative group text-left pt-1"
             id="timeline-card-education"
           >
-            {/* Education icon circle */}
-            <span className="absolute -left-[31px] md:-left-[47px] top-6.5 flex h-4 w-4 md:h-5 md:w-5 items-center justify-center rounded-full bg-white dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 group-hover:border-teal-600 transition-colors z-10 shadow-xs">
-              <Award size={9} className="text-zinc-400 dark:text-zinc-500 group-hover:text-teal-600" />
+            {/* Education icon circle - accurately centered via -translate-x-1/2 */}
+            <span className="absolute -left-6 sm:-left-8 md:-left-10 -translate-x-1/2 top-4 flex h-5 w-5 sm:h-5.5 sm:w-5.5 items-center justify-center rounded-full bg-white dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 group-hover:border-teal-600 transition-colors z-10 shadow-xs">
+              <Award size={10} className="text-zinc-400 dark:text-zinc-500 group-hover:text-teal-600" />
             </span>
 
-            <div className="p-6 md:p-8 bg-zinc-50/40 dark:bg-zinc-950/15 border border-zinc-200/50 dark:border-zinc-800/80 rounded-xl hover:border-teal-500/20 dark:hover:border-teal-500/30 hover:bg-white dark:hover:bg-zinc-900 hover:shadow-xs transition">
+            <div className="p-4 sm:p-6 md:p-8 bg-zinc-50/40 dark:bg-zinc-950/15 border border-zinc-200/50 dark:border-zinc-800/80 rounded-xl hover:border-teal-500/20 dark:hover:border-teal-500/30 hover:bg-white dark:hover:bg-zinc-900 hover:shadow-xs transition">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
                 <div>
-                  <h3 className="text-base md:text-lg font-sans font-extrabold text-zinc-950 dark:text-zinc-50">
+                  <h3 className="text-sm sm:text-base md:text-lg font-sans font-extrabold text-zinc-950 dark:text-zinc-50">
                     B.S. in Computer Science
                   </h3>
                   <p className="text-xs sm:text-sm font-bold text-teal-657 dark:text-teal-400">

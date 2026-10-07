@@ -47,24 +47,24 @@ export default function Skills() {
   };
 
   return (
-    <section className="py-24 px-6 md:px-12 bg-zinc-50/50 dark:bg-zinc-950/20 border-y border-zinc-200/55 dark:border-zinc-800/80 transition-colors duration-300" id="skills-section">
+    <section className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-12 bg-zinc-50/50 dark:bg-zinc-950/20 border-y border-zinc-200/55 dark:border-zinc-800/80 transition-colors duration-300" id="skills-section">
       <div className="w-full max-w-7xl mx-auto">
         
         {/* Header Block Description */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-16 space-y-3.5">
           <span className="font-mono text-xs tracking-widest uppercase text-teal-600 dark:text-teal-400 font-bold inline-flex items-center gap-1">
             <Sparkles size={11} className="text-teal-600 dark:text-teal-400 animate-pulse" /> Engineering Ecosystem
           </span>
-          <h2 className="text-3xl md:text-4xl font-sans font-extrabold text-zinc-900 dark:text-zinc-50 tracking-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-sans font-extrabold text-zinc-900 dark:text-zinc-50 tracking-tight">
             Technical Stack & Frameworks
           </h2>
-          <p className="text-zinc-500 dark:text-zinc-400 text-sm leading-relaxed font-semibold">
+          <p className="text-zinc-500 dark:text-zinc-400 text-xs sm:text-sm leading-relaxed font-semibold">
             Architecting robust applications with optimized modular backend nodes, fluid interfaces, and fully integrated automated pipeline testing.
           </p>
         </div>
 
         {/* Filter Categories Horizontal Bar */}
-        <div className="flex flex-wrap justify-center items-center gap-2 mb-12">
+        <div className="flex flex-wrap justify-center items-center gap-1.5 sm:gap-2 mb-8 sm:mb-12">
           {categories.map((cat) => {
             const IconComponent = cat.icon;
             const isActive = activeCategory === cat.id;
@@ -73,7 +73,7 @@ export default function Skills() {
               <button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id as SkillCat)}
-                className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-bold transition-all duration-150 border cursor-pointer ${
+                className={`flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-lg text-[11px] sm:text-xs font-bold transition-all duration-150 border cursor-pointer ${
                   isActive
                     ? 'bg-zinc-950 dark:bg-zinc-50 border-zinc-950 dark:border-zinc-50 text-white dark:text-zinc-950 shadow-xs'
                     : 'bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800 text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:border-zinc-300 dark:hover:border-zinc-700'
@@ -90,7 +90,7 @@ export default function Skills() {
         {/* Dynamic Interactive Skills Grid */}
         <motion.div 
           layout
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-5"
         >
           <AnimatePresence mode="popLayout">
             {filteredSkills.map((skill) => (
@@ -100,7 +100,7 @@ export default function Skills() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.25 }}
-                className="p-5 rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200/60 dark:border-zinc-800/80 hover:border-teal-500/15 dark:hover:border-teal-500/30 hover:shadow-2xs transition-all duration-250 text-left"
+                className="p-4 sm:p-5 rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200/60 dark:border-zinc-800/80 hover:border-teal-500/15 dark:hover:border-teal-500/30 hover:shadow-2xs transition-all duration-250 text-left"
                 key={skill.name}
                 id={`skill-card-${skill.name.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}
               >

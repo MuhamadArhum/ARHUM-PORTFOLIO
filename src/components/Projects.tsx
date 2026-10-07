@@ -94,28 +94,28 @@ export default function Projects() {
   };
 
   return (
-    <section className="py-24 px-6 md:px-12 bg-white dark:bg-zinc-900 border-b border-zinc-100 dark:border-zinc-800 transition-colors duration-300" id="projects-section">
+    <section className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-12 bg-white dark:bg-zinc-900 border-b border-zinc-100 dark:border-zinc-800 transition-colors duration-300" id="projects-section">
       <div className="w-full max-w-7xl mx-auto">
         
         {/* Header Block Description */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-          <div className="max-w-2xl text-left space-y-3">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-5 sm:gap-6 mb-8 sm:mb-12">
+          <div className="max-w-2xl text-left space-y-2.5 sm:space-y-3">
             <span className="font-mono text-xs tracking-widest uppercase text-teal-600 dark:text-teal-400 font-bold inline-flex items-center gap-1.5">
               <Sparkles size={12} className="text-teal-600 dark:text-teal-400 animate-pulse" /> Engineering Ecosystem & Products
             </span>
-            <h2 className="text-3xl md:text-4xl font-sans font-extrabold text-zinc-900 dark:text-zinc-50 tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-sans font-extrabold text-zinc-900 dark:text-zinc-50 tracking-tight">
               Products Built by Muhammad Arhum
             </h2>
-            <p className="text-zinc-500 dark:text-zinc-400 text-sm leading-relaxed font-semibold">
+            <p className="text-zinc-500 dark:text-zinc-400 text-xs sm:text-sm leading-relaxed font-semibold">
               Production-tested restaurant & retail POS engines, clinical EHRs, construction ERPs, offline hardware billing tools, and automated B2B engines built across @ApnaSlot & AbyteSol.
             </p>
           </div>
 
           {/* Quick Search Input */}
-          <div className="relative min-w-[260px] md:w-72">
+          <div className="relative w-full md:w-72">
             <Search size={14} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-zinc-400 dark:text-zinc-500 pointer-events-none" />
             <input 
-              type="text"
+              type="text" 
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search products, tech, or tags..."
@@ -126,12 +126,12 @@ export default function Projects() {
         </div>
 
         {/* Category Horizontal Filter Chips */}
-        <div className="flex flex-wrap items-center gap-2 mb-10 pb-2 border-b border-zinc-100 dark:border-zinc-800/80">
+        <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-8 sm:mb-10 pb-2 border-b border-zinc-100 dark:border-zinc-800/80">
           {categories.map((cat) => (
             <button
               key={cat.label}
               onClick={() => setActiveCategory(cat.label)}
-              className={`px-3.5 py-1.5 rounded-lg text-xs font-bold tracking-wide transition-all duration-200 cursor-pointer flex items-center gap-2 ${
+              className={`px-3 py-1.5 sm:px-3.5 sm:py-1.5 rounded-lg text-[11px] sm:text-xs font-bold tracking-wide transition-all duration-200 cursor-pointer flex items-center gap-1.5 sm:gap-2 ${
                 activeCategory === cat.label
                   ? 'bg-zinc-950 dark:bg-zinc-50 text-white dark:text-zinc-950 shadow-xs'
                   : 'bg-zinc-50 dark:bg-zinc-950/60 text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-100 border border-zinc-200/80 dark:border-zinc-800 hover:border-zinc-300'
@@ -150,18 +150,43 @@ export default function Projects() {
           ))}
         </div>
 
-        {/* Dynamic Project Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Dynamic Project Cards Grid with Staggered Entrance Animation */}
+        <motion.div 
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-40px" }}
+          variants={{
+            hidden: { opacity: 0 },
+            visible: {
+              opacity: 1,
+              transition: {
+                staggerChildren: 0.08,
+                delayChildren: 0.05,
+              },
+            },
+          }}
+        >
           <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project) => (
+            {filteredProjects.map((project, index) => (
               <motion.div
                 layout
                 key={project.id}
-                initial={{ opacity: 0, scale: 0.98 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.25 }}
-                className="group flex flex-col bg-white dark:bg-zinc-900/60 border border-zinc-200 dark:border-zinc-800 rounded-2xl overflow-hidden hover:border-teal-500/40 dark:hover:border-teal-500/40 hover:shadow-lg transition-all duration-300 text-left"
+                variants={{
+                  hidden: { opacity: 0, y: 24, scale: 0.96 },
+                  visible: { 
+                    opacity: 1, 
+                    y: 0, 
+                    scale: 1,
+                    transition: {
+                      duration: 0.45,
+                      ease: [0.21, 0.47, 0.32, 0.98],
+                    }
+                  },
+                }}
+                exit={{ opacity: 0, scale: 0.95, transition: { duration: 0.2 } }}
+                whileHover={{ y: -4, transition: { duration: 0.2 } }}
+                className="group flex flex-col bg-white dark:bg-zinc-900/60 border border-zinc-200 dark:border-zinc-800 rounded-2xl overflow-hidden hover:border-teal-500/50 dark:hover:border-teal-500/50 hover:shadow-xl dark:hover:shadow-zinc-950/50 transition-all duration-300 text-left"
                 id={`project-card-${project.id}`}
               >
                 {/* Visual Header Image */}
@@ -273,7 +298,7 @@ export default function Projects() {
               </motion.div>
             ))}
           </AnimatePresence>
-        </div>
+        </motion.div>
 
         {filteredProjects.length === 0 && (
           <div className="text-center py-16 border border-dashed border-zinc-200 dark:border-zinc-800 rounded-2xl">
@@ -296,17 +321,17 @@ export default function Projects() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-zinc-950/75 backdrop-blur-md z-50 flex items-center justify-center p-3 sm:p-5 md:p-6 lg:p-8 overflow-y-auto"
+              className="fixed inset-0 bg-zinc-950/80 backdrop-blur-md z-[100] flex items-center justify-center p-3 sm:p-5 md:p-6 lg:p-8 pt-18 sm:pt-20 md:pt-8 overflow-y-auto"
               id="project-details-overlay"
               onClick={() => setSelectedProject(null)}
             >
               <motion.div
-                initial={{ scale: 0.96, opacity: 0, y: 16 }}
+                initial={{ scale: 0.95, opacity: 0, y: 20 }}
                 animate={{ scale: 1, opacity: 1, y: 0 }}
-                exit={{ scale: 0.96, opacity: 0, y: 16 }}
-                transition={{ type: 'spring', damping: 26, stiffness: 320 }}
+                exit={{ scale: 0.95, opacity: 0, y: 20 }}
+                transition={{ type: 'spring', damping: 28, stiffness: 340 }}
                 onClick={(e) => e.stopPropagation()}
-                className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 max-w-5xl xl:max-w-6xl w-full rounded-2xl md:rounded-3xl shadow-2xl overflow-hidden max-h-[92vh] flex flex-col text-left"
+                className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 max-w-5xl xl:max-w-6xl w-full rounded-2xl md:rounded-3xl shadow-2xl overflow-hidden max-h-[88vh] sm:max-h-[85vh] lg:max-h-[90vh] my-auto flex flex-col text-left"
                 id="project-details-modal"
               >
                 {/* Modal Top Header Bar */}

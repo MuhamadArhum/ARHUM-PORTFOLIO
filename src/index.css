@@ -9,6 +9,11 @@
 @variant dark (&:where(.dark, .dark *));
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 64px; /* 16-unit navbar height (h-16) */
+  }
+
   body {
     font-family: var(--font-sans);
     scroll-behavior: smooth;

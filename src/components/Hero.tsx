@@ -30,7 +30,7 @@ export default function Hero({ onContactClick, onProjectsClick }: HeroProps) {
   };
 
   return (
-    <section className="relative min-h-[82vh] flex items-center justify-center py-20 px-6 md:px-12 overflow-hidden bg-white dark:bg-zinc-900 transition-colors duration-300">
+    <section id="home-section" className="relative min-h-[82vh] flex items-center justify-center py-14 sm:py-20 px-4 sm:px-6 md:px-12 overflow-hidden bg-white dark:bg-zinc-900 transition-colors duration-300">
       
       {/* Decorative Pristine Atmospheric Accents */}
       <div className="absolute inset-0 z-0 opacity-30 overflow-hidden pointer-events-none">
@@ -41,11 +41,11 @@ export default function Hero({ onContactClick, onProjectsClick }: HeroProps) {
       {/* Exquisite micro-dotted pattern background */}
       <div className="absolute inset-0 bg-[radial-gradient(#e4e4e7_1.2px,transparent_1.2px)] dark:bg-[radial-gradient(#27272a_1.2px,transparent_1.2px)] [background-size:24px_24px] opacity-40 pointer-events-none z-0" />
 
-      <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center relative z-10">
+      <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center relative z-10">
         
         {/* Info Bio Block (Left Column) */}
         <motion.div 
-          className="lg:col-span-7 flex flex-col items-start gap-6 text-left"
+          className="lg:col-span-7 flex flex-col items-start gap-5 sm:gap-6 text-left"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
@@ -64,32 +64,32 @@ export default function Hero({ onContactClick, onProjectsClick }: HeroProps) {
           </motion.div>
 
           {/* Heading */}
-          <div className="space-y-3">
+          <div className="space-y-2.5 sm:space-y-3">
             <motion.div variants={itemVariants} className="flex items-center gap-1.5 text-teal-605">
               <Sparkles size={13} className="text-teal-600 animate-pulse" />
-              <span className="font-mono text-[9px] tracking-widest uppercase font-bold text-zinc-500 dark:text-zinc-400">Systems & Solutions Portfolio</span>
+              <span className="font-mono text-[9px] sm:text-[10px] tracking-widest uppercase font-bold text-zinc-500 dark:text-zinc-400">Systems & Solutions Portfolio</span>
             </motion.div>
             
             <motion.h1 
               variants={itemVariants} 
-              className="text-4xl sm:text-5xl lg:text-6xl font-sans font-extrabold tracking-tight text-zinc-950 dark:text-zinc-50 leading-[1.08]"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-sans font-extrabold tracking-tight text-zinc-950 dark:text-zinc-50 leading-[1.12]"
             >
               Hi, I am <span className="bg-gradient-to-r from-teal-600 via-emerald-600 to-amber-605 bg-clip-text text-transparent block mt-1">{PERSONAL_INFO.name}</span>
             </motion.h1>
             
             <motion.h2 
               variants={itemVariants} 
-              className="text-base sm:text-lg font-bold text-zinc-700 dark:text-zinc-300 tracking-wide flex items-center gap-2"
+              className="text-sm sm:text-base md:text-lg font-bold text-zinc-700 dark:text-zinc-300 tracking-wide flex items-center gap-2"
             >
-              <span className="h-1.5 w-1.5 rounded-full bg-teal-600" />
-              {PERSONAL_INFO.title}
+              <span className="h-1.5 w-1.5 rounded-full bg-teal-600 shrink-0" />
+              <span>{PERSONAL_INFO.title}</span>
             </motion.h2>
           </div>
 
           {/* Short Bio */}
           <motion.p 
             variants={itemVariants} 
-            className="text-sm sm:text-base text-zinc-650 dark:text-zinc-400 max-w-2xl leading-relaxed"
+            className="text-xs sm:text-sm md:text-base text-zinc-650 dark:text-zinc-400 max-w-2xl leading-relaxed"
           >
             {PERSONAL_INFO.bioBrief}
           </motion.p>
@@ -97,18 +97,18 @@ export default function Hero({ onContactClick, onProjectsClick }: HeroProps) {
           {/* Location details */}
           <motion.div 
             variants={itemVariants}
-            className="flex flex-wrap items-center gap-y-2 gap-x-6 text-xs text-zinc-500 dark:text-zinc-400 font-mono py-2.5 border-y border-zinc-150/80 dark:border-zinc-800 w-full md:w-auto"
+            className="flex flex-wrap items-center gap-y-2 gap-x-4 sm:gap-x-6 text-[11px] sm:text-xs text-zinc-500 dark:text-zinc-400 font-mono py-2.5 border-y border-zinc-150/80 dark:border-zinc-800 w-full"
           >
             <span className="flex items-center gap-1.5">
-              <MapPin size={13} className="text-teal-600" />
+              <MapPin size={13} className="text-teal-600 shrink-0" />
               {PERSONAL_INFO.location}
             </span>
-            <span className="flex items-center gap-1.5 sm:border-l sm:border-zinc-200 dark:sm:border-zinc-800 sm:pl-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-amber-600" />
+            <span className="flex items-center gap-1.5 sm:border-l sm:border-zinc-200 dark:sm:border-zinc-800 sm:pl-5">
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-600 shrink-0" />
               Timezone: {PERSONAL_INFO.timezone} (PKT offset)
             </span>
-            <span className="flex items-center gap-1.5 sm:border-l sm:border-zinc-200 dark:sm:border-zinc-800 sm:pl-6 font-bold text-teal-600 dark:text-teal-400">
-              <span className="w-1.5 h-1.5 rounded-full bg-teal-500" />
+            <span className="flex items-center gap-1.5 sm:border-l sm:border-zinc-200 dark:sm:border-zinc-800 sm:pl-5 font-bold text-teal-600 dark:text-teal-400">
+              <span className="w-1.5 h-1.5 rounded-full bg-teal-500 shrink-0" />
               16+ Shipped Products & Repos
             </span>
           </motion.div>
@@ -116,18 +116,18 @@ export default function Hero({ onContactClick, onProjectsClick }: HeroProps) {
           {/* Primary Operations Buttons */}
           <motion.div 
             variants={itemVariants}
-            className="flex flex-wrap items-center gap-3.5 pt-1.5"
+            className="flex flex-wrap items-center gap-3 pt-1.5 w-full sm:w-auto"
           >
             <button 
               onClick={onProjectsClick}
-              className="px-5 py-2.5 rounded-lg font-bold text-white dark:text-zinc-950 bg-zinc-950 dark:bg-zinc-50 hover:bg-teal-650 dark:hover:bg-teal-500 active:scale-[0.98] transition-all duration-200 cursor-pointer text-xs uppercase tracking-wider"
+              className="w-full sm:w-auto px-5 py-2.5 rounded-lg font-bold text-white dark:text-zinc-950 bg-zinc-950 dark:bg-zinc-50 hover:bg-teal-650 dark:hover:bg-teal-500 active:scale-[0.98] transition-all duration-200 cursor-pointer text-xs uppercase tracking-wider text-center"
               id="hero-explore-work-btn"
             >
               View My Work
             </button>
             <button 
               onClick={onContactClick}
-              className="px-5 py-2.5 rounded-lg font-bold text-zinc-850 dark:text-zinc-250 bg-zinc-50 dark:bg-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-750 border border-zinc-250 dark:border-zinc-700 active:scale-[0.98] transition-all duration-200 cursor-pointer text-xs uppercase tracking-wider"
+              className="w-full sm:w-auto px-5 py-2.5 rounded-lg font-bold text-zinc-850 dark:text-zinc-250 bg-zinc-50 dark:bg-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-750 border border-zinc-250 dark:border-zinc-700 active:scale-[0.98] transition-all duration-200 cursor-pointer text-xs uppercase tracking-wider text-center"
               id="hero-get-in-touch-btn"
             >
               Get In Touch
@@ -137,7 +137,7 @@ export default function Hero({ onContactClick, onProjectsClick }: HeroProps) {
           {/* Anchor channels */}
           <motion.div 
             variants={itemVariants}
-            className="flex items-center gap-5 pt-5 text-zinc-400 dark:text-zinc-500 border-t border-zinc-100 dark:border-zinc-800 w-full"
+            className="flex flex-wrap items-center gap-4 sm:gap-5 pt-4 text-zinc-400 dark:text-zinc-500 border-t border-zinc-100 dark:border-zinc-800 w-full"
           >
             <span className="text-[9px] font-mono uppercase tracking-widest text-zinc-400 dark:text-zinc-500 font-bold">Directories</span>
             
@@ -171,7 +171,7 @@ export default function Hero({ onContactClick, onProjectsClick }: HeroProps) {
 
             <a 
               href={PERSONAL_INFO.resumeUrl} 
-              className="text-zinc-500 dark:text-zinc-400 hover:text-teal-600 dark:hover:text-teal-400 hover:bg-teal-50/50 dark:hover:bg-teal-950/20 transition-all duration-250 flex items-center gap-1 text-[10px] font-mono font-bold uppercase border border-zinc-200 dark:border-zinc-750 px-2.5 py-1 rounded-lg"
+              className="text-zinc-500 dark:text-zinc-400 hover:text-teal-600 dark:hover:text-teal-400 hover:bg-teal-50/50 dark:hover:bg-teal-950/20 transition-all duration-250 flex items-center gap-1 text-[10px] font-mono font-bold uppercase border border-zinc-200 dark:border-zinc-750 px-2.5 py-1 rounded-lg ml-auto sm:ml-0"
               aria-label="Download Professional Resume Profile"
             >
               <FileText size={12} />

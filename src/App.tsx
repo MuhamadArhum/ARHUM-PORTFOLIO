@@ -41,7 +41,7 @@ export default function App() {
     }
   }, [darkMode]);
 
-  // Monitor scroll height to show Back-To-Top button and calculate active sections
+  // Monitor scroll height to show Back-To-Top button and calculate active sections with 64px fixed navbar offset
   useEffect(() => {
     const handleScroll = () => {
       // Toggle back-to-top visibility
@@ -51,16 +51,30 @@ export default function App() {
         setShowScrollTop(false);
       }
 
-      // Scroll-spy to keep navigation highlighted
-      const sections = ['home', 'ai-twin', 'experience', 'skills', 'projects', 'contact'];
-      const scrollPosition = window.scrollY + 200;
+      // Scroll-spy: fixed navbar is 64px (16-unit h-16)
+      const NAVBAR_HEIGHT = 64;
+      const scrollPosition = window.scrollY + NAVBAR_HEIGHT + 36; // 64px header + 36px threshold
 
-      for (const section of sections) {
-        const el = document.getElementById(section === 'home' ? 'root' : `${section}-section`);
+      const sections = ['home', 'ai-twin', 'experience', 'skills', 'projects', 'contact'];
+      
+      // If at the very bottom of the document, activate the contact section
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 50) {
+        setActiveTab('contact');
+        return;
+      }
+
+      // If at the top of the page, activate home
+      if (window.scrollY < 100) {
+        setActiveTab('home');
+        return;
+      }
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = sections[i];
+        const el = document.getElementById(`${section}-section`) || (section === 'home' ? document.getElementById('root') : null);
         if (el) {
           const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollPosition >= top && scrollPosition < top + height) {
+          if (scrollPosition >= top) {
             setActiveTab(section);
             break;
           }
@@ -68,15 +82,28 @@ export default function App() {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const scrollToSection = (id: string) => {
     setMobileMenuOpen(false);
-    const element = id === 'home' ? document.getElementById('root') : document.getElementById(`${id}-section`);
+    if (id === 'home') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      setActiveTab('home');
+      return;
+    }
+
+    const element = document.getElementById(`${id}-section`);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const NAVBAR_HEIGHT = 64; // 16-unit header height
+      const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+      const offsetPosition = elementPosition - NAVBAR_HEIGHT;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
       setActiveTab(id);
     }
   };
@@ -95,19 +122,19 @@ export default function App() {
       
       {/* Pristine modern fluid header */}
       <nav 
-        className="fixed top-0 left-0 right-0 h-16 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md border-b border-zinc-100 dark:border-zinc-800/80 z-40 flex items-center justify-between px-6 md:px-12 transition-all duration-300 shadow-xs shadow-zinc-50/50 dark:shadow-none"
+        className="fixed top-0 left-0 right-0 h-16 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-md border-b border-zinc-100 dark:border-zinc-800/80 z-40 flex items-center justify-between px-4 sm:px-6 md:px-12 transition-all duration-300 shadow-xs shadow-zinc-50/50 dark:shadow-none"
         id="main-navigation-navbar"
       >
         <div 
           onClick={() => scrollToSection('home')} 
-          className="cursor-pointer flex items-center gap-2.5 group"
+          className="cursor-pointer flex items-center gap-2 sm:gap-2.5 group"
           id="navbar-site-title"
         >
           {/* Minimal design mark */}
-          <div className="h-8.5 w-8.5 rounded-lg bg-zinc-950 dark:bg-zinc-50 flex items-center justify-center text-white dark:text-zinc-950 font-mono font-bold text-sm tracking-tighter group-hover:bg-teal-600 dark:group-hover:bg-teal-500 transition-colors duration-250">
+          <div className="h-8 w-8 sm:h-8.5 sm:w-8.5 rounded-lg bg-zinc-950 dark:bg-zinc-50 flex items-center justify-center text-white dark:text-zinc-950 font-mono font-bold text-xs sm:text-sm tracking-tighter group-hover:bg-teal-600 dark:group-hover:bg-teal-500 transition-colors duration-250">
             M
           </div>
-          <span className="font-sans font-bold text-base text-zinc-900 dark:text-zinc-50 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors duration-200 tracking-tight">
+          <span className="font-sans font-bold text-sm sm:text-base text-zinc-900 dark:text-zinc-50 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors duration-200 tracking-tight">
             Arhum<span className="text-teal-600 dark:text-teal-400">.dev</span>
           </span>
         </div>
@@ -177,47 +204,56 @@ export default function App() {
         </div>
       </nav>
 
-      {/* Floating Side Drawer mobile layout */}
+      {/* Floating Side Drawer mobile layout with backdrop */}
       <AnimatePresence>
         {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="fixed inset-x-0 top-16 bg-white dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800 z-30 p-6 flex flex-col gap-4 text-left shadow-lg md:hidden"
-            id="mobile-navigation-drawer"
-          >
-            <div className="space-y-1.5">
-              <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-400 dark:text-zinc-550 block px-3 font-semibold mb-1">Index Menu</span>
-              {navLinks.map((link) => {
-                const Icon = link.icon;
-                const isActive = activeTab === link.id;
-                return (
-                  <button
-                    key={link.id}
-                    onClick={() => scrollToSection(link.id)}
-                    className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-bold tracking-wide cursor-pointer transition-colors ${
-                      isActive
-                        ? 'bg-teal-50 dark:bg-teal-950/40 text-teal-700 dark:text-teal-300'
-                        : 'text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-50 dark:hover:bg-zinc-800'
-                    }`}
-                    id={`navlink-mobile-${link.id}`}
-                  >
-                    <Icon size={14} className={isActive ? "text-teal-600 dark:text-teal-400" : "text-zinc-400 dark:text-zinc-500"} />
-                    <span>{link.label}</span>
-                  </button>
-                );
-              })}
-            </div>
-            
-            <button
-              onClick={() => scrollToSection('contact')}
-              className="mt-1 w-full text-center py-2.5 rounded-lg bg-zinc-950 dark:bg-zinc-50 hover:bg-teal-600 dark:hover:bg-teal-500 text-white dark:text-zinc-950 dark:hover:text-white font-bold text-xs cursor-pointer shadow-sm transition"
-              id="mobile-nav-action-hire-btn"
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setMobileMenuOpen(false)}
+              className="fixed inset-0 top-16 bg-zinc-950/40 backdrop-blur-xs z-30 md:hidden"
+            />
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className="fixed inset-x-0 top-16 bg-white dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800 z-40 p-5 sm:p-6 flex flex-col gap-4 text-left shadow-xl md:hidden"
+              id="mobile-navigation-drawer"
             >
-              Collaborate With Arhum
-            </button>
-          </motion.div>
+              <div className="space-y-1.5">
+                <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-400 dark:text-zinc-550 block px-3 font-semibold mb-1">Index Menu</span>
+                {navLinks.map((link) => {
+                  const Icon = link.icon;
+                  const isActive = activeTab === link.id;
+                  return (
+                    <button
+                      key={link.id}
+                      onClick={() => scrollToSection(link.id)}
+                      className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-bold tracking-wide cursor-pointer transition-colors ${
+                        isActive
+                          ? 'bg-teal-50 dark:bg-teal-950/40 text-teal-700 dark:text-teal-300'
+                          : 'text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-50 dark:hover:bg-zinc-800'
+                      }`}
+                      id={`navlink-mobile-${link.id}`}
+                    >
+                      <Icon size={14} className={isActive ? "text-teal-600 dark:text-teal-400" : "text-zinc-400 dark:text-zinc-500"} />
+                      <span>{link.label}</span>
+                    </button>
+                  );
+                })}
+              </div>
+              
+              <button
+                onClick={() => scrollToSection('contact')}
+                className="mt-1 w-full text-center py-2.5 rounded-lg bg-zinc-950 dark:bg-zinc-50 hover:bg-teal-600 dark:hover:bg-teal-500 text-white dark:text-zinc-950 dark:hover:text-white font-bold text-xs cursor-pointer shadow-sm transition"
+                id="mobile-nav-action-hire-btn"
+              >
+                Collaborate With Arhum
+              </button>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
 
@@ -248,11 +284,11 @@ export default function App() {
       </main>
 
       {/* Modern Studio Footer */}
-      <footer className="bg-zinc-50 dark:bg-zinc-950/40 border-t border-zinc-200/60 dark:border-zinc-800/80 py-12 px-6 lg:px-12 text-center" id="footer-container">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+      <footer className="bg-zinc-50 dark:bg-zinc-950/40 border-t border-zinc-200/60 dark:border-zinc-800/80 py-10 sm:py-12 px-4 sm:px-6 lg:px-12 text-center" id="footer-container">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8">
           
-          <div className="flex flex-col items-center md:items-start text-left gap-1">
-            <span className="font-sans font-extrabold text-zinc-900 dark:text-zinc-100 text-base">
+          <div className="flex flex-col items-center md:items-start text-center md:text-left gap-1">
+            <span className="font-sans font-extrabold text-zinc-900 dark:text-zinc-100 text-sm sm:text-base">
               {PERSONAL_INFO.name} <span className="text-xs font-mono font-normal text-zinc-400 dark:text-zinc-500">/ portfolio</span>
             </span>
             <span className="text-xs text-zinc-500 dark:text-zinc-400 font-medium">
@@ -260,7 +296,7 @@ export default function App() {
             </span>
           </div>
 
-          <div className="flex items-center gap-6 text-xs font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">
+          <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-6 text-xs font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">
             <button onClick={() => scrollToSection('home')} className="hover:text-teal-600 dark:hover:text-teal-400 cursor-pointer transition-colors">Top</button>
             <button onClick={() => scrollToSection('ai-twin')} className="hover:text-teal-600 dark:hover:text-teal-400 cursor-pointer transition-colors">AI Twin</button>
             <button onClick={() => scrollToSection('experience')} className="hover:text-teal-600 dark:hover:text-teal-400 cursor-pointer transition-colors">Experience</button>

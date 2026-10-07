@@ -131,39 +131,39 @@ export default function AITwin() {
   };
 
   return (
-    <section className="py-24 px-6 md:px-12 bg-white dark:bg-zinc-900 border-y border-zinc-100 dark:border-zinc-800 transition-colors duration-300" id="ai-twin-section">
+    <section className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-12 bg-white dark:bg-zinc-900 border-y border-zinc-100 dark:border-zinc-800 transition-colors duration-300" id="ai-twin-section">
       <div className="w-full max-w-7xl mx-auto">
         
         {/* Intro Layout and Header */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
           {/* Left Description Info Panel */}
-          <div className="lg:col-span-5 text-left space-y-6">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 dark:bg-teal-950/40 border border-teal-100 dark:border-teal-900/40 text-[10px] font-bold text-teal-800 dark:text-teal-300 uppercase tracking-wider mb-2">
+          <div className="lg:col-span-5 text-left space-y-5 sm:space-y-6">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-50 dark:bg-teal-950/40 border border-teal-100 dark:border-teal-900/40 text-[10px] font-bold text-teal-800 dark:text-teal-300 uppercase tracking-wider mb-1">
               <Sparkles size={11} className="text-teal-600 animate-pulse" />
               Gemini AI Integration
             </div>
             
-            <h2 className="text-3xl md:text-4xl font-sans font-extrabold text-zinc-900 dark:text-zinc-50 tracking-tight leading-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-sans font-extrabold text-zinc-900 dark:text-zinc-50 tracking-tight leading-tight">
               Instant AI Assistant <span className="text-teal-600 block sm:inline">Recruitment Sandbox</span>
             </h2>
             
-            <p className="text-zinc-500 dark:text-zinc-400 text-sm leading-relaxed font-semibold">
+            <p className="text-zinc-500 dark:text-zinc-400 text-xs sm:text-sm leading-relaxed font-semibold">
               Save time reading resumes! Our custom server proxies routing safely via Gemini endpoints, preserving secret API keys on the server while offering responsive knowledge relative to:
             </p>
 
-            <div className="space-y-3 font-mono text-xs text-zinc-650 dark:text-zinc-400">
-              <div className="flex gap-2.5 items-center">
-                <span className="p-1 px-1.5 rounded-lg bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700/80 text-teal-600 dark:text-teal-400 font-extrabold">Technical Stack</span>
-                <span className="text-zinc-500 dark:text-zinc-450 font-semibold">Frameworks, DB indexes, APIs & Docker.</span>
+            <div className="space-y-2.5 font-mono text-xs text-zinc-650 dark:text-zinc-400">
+              <div className="flex flex-wrap sm:flex-nowrap gap-2 items-center">
+                <span className="p-1 px-1.5 rounded-lg bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700/80 text-teal-600 dark:text-teal-400 font-extrabold shrink-0">Technical Stack</span>
+                <span className="text-zinc-500 dark:text-zinc-450 font-semibold text-[11px] sm:text-xs">Frameworks, DB indexes, APIs & Docker.</span>
               </div>
-              <div className="flex gap-2.5 items-center">
-                <span className="p-1 px-1.5 rounded-lg bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700/80 text-teal-600 dark:text-teal-400 font-extrabold">Availability</span>
-                <span className="text-zinc-500 dark:text-zinc-455 font-semibold font-sans">Full-time roles, contracts & time zones.</span>
+              <div className="flex flex-wrap sm:flex-nowrap gap-2 items-center">
+                <span className="p-1 px-1.5 rounded-lg bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700/80 text-teal-600 dark:text-teal-400 font-extrabold shrink-0">Availability</span>
+                <span className="text-zinc-500 dark:text-zinc-455 font-semibold font-sans text-[11px] sm:text-xs">Full-time roles, contracts & time zones.</span>
               </div>
-              <div className="flex gap-2.5 items-center">
-                <span className="p-1 px-1.5 rounded-lg bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700/80 text-teal-600 dark:text-teal-400 font-extrabold">Engineering Specs</span>
-                <span className="text-zinc-500 dark:text-zinc-455 font-semibold">Latencies, modular schemas & architecture.</span>
+              <div className="flex flex-wrap sm:flex-nowrap gap-2 items-center">
+                <span className="p-1 px-1.5 rounded-lg bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700/80 text-teal-600 dark:text-teal-400 font-extrabold shrink-0">Engineering Specs</span>
+                <span className="text-zinc-500 dark:text-zinc-455 font-semibold text-[11px] sm:text-xs">Latencies, modular schemas & architecture.</span>
               </div>
             </div>
 
@@ -173,10 +173,10 @@ export default function AITwin() {
           </div>
 
           {/* Interactive Modern Chat Window Container (Right) */}
-          <div className="lg:col-span-7 flex flex-col h-[520px] rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 overflow-hidden shadow-xs relative transition-colors" id="ai-chat-interface-box">
+          <div className="lg:col-span-7 flex flex-col h-[460px] sm:h-[500px] lg:h-[530px] rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 overflow-hidden shadow-xs relative transition-colors" id="ai-chat-interface-box">
             
             {/* Window Header */}
-            <div className="p-3.5 bg-zinc-50 dark:bg-zinc-900 border-b border-zinc-200/80 dark:border-zinc-800 flex items-center justify-between z-10">
+            <div className="p-3 sm:p-3.5 bg-zinc-50 dark:bg-zinc-900 border-b border-zinc-200/80 dark:border-zinc-800 flex items-center justify-between z-10">
               <div className="flex items-center gap-2.5">
                 <div className="relative">
                   <span className="relative flex h-2 w-2">
@@ -204,11 +204,11 @@ export default function AITwin() {
             </div>
 
             {/* Scrollable chat body */}
-            <div className="flex-grow overflow-y-auto p-4 md:p-6 space-y-4 bg-zinc-50/50 dark:bg-zinc-950/20 flex flex-col">
+            <div className="flex-grow overflow-y-auto p-3.5 sm:p-5 md:p-6 space-y-3.5 sm:space-y-4 bg-zinc-50/50 dark:bg-zinc-950/20 flex flex-col">
               {messages.map((msg) => (
                 <div 
                   key={msg.id}
-                  className={`flex gap-3 max-w-[85%] ${msg.sender === 'user' ? 'ml-auto flex-row-reverse' : 'mr-auto text-left'}`}
+                  className={`flex gap-2.5 sm:gap-3 max-w-[92%] sm:max-w-[85%] ${msg.sender === 'user' ? 'ml-auto flex-row-reverse' : 'mr-auto text-left'}`}
                 >
                   {/* Icon label */}
                   <div className={`p-2 rounded-lg shrink-0 h-8 w-8 flex items-center justify-center border text-xs font-bold ${

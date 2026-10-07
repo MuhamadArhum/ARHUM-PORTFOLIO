@@ -1,12 +1,10 @@
-import profilePhoto from '../assets/images/profile_avatar_user.jpg';
-
 export default function ProfileImage() {
   const onlinePhotoUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS177eJI0gBSWHtv3DvOIo2ifl4-kAD86Xiz_xzpvVHCw&s=10";
 
   return (
-    <div className="relative flex flex-col items-center justify-center">
+    <div className="relative flex flex-col items-center justify-center w-full">
       <div 
-        className="relative w-64 h-64 md:w-76 md:h-76 rounded-2xl overflow-hidden border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-850/60 shadow-lg flex items-center justify-center transition-all duration-300 hover:border-teal-500/50"
+        className="relative w-52 h-52 sm:w-64 sm:h-64 lg:w-72 lg:h-72 xl:w-80 xl:h-80 rounded-2xl md:rounded-3xl overflow-hidden border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-850/60 shadow-lg flex items-center justify-center transition-all duration-300 hover:border-teal-500/50"
         id="profile-picture-container"
       >
         {/* Soft atmospheric gradient overlay */}
@@ -20,14 +18,11 @@ export default function ProfileImage() {
 
         {/* Profile Photo requested by user */}
         <img 
-          src={profilePhoto || onlinePhotoUrl} 
+          src={onlinePhotoUrl} 
           alt="Muhammad Arhum" 
           className="w-full h-full object-cover object-center relative z-10 transition-transform duration-500 hover:scale-105"
           loading="eager"
           decoding="async"
-          onError={(e) => {
-            (e.currentTarget as HTMLImageElement).src = onlinePhotoUrl;
-          }}
         />
       </div>
     </div>
